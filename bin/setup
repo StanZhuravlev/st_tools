@@ -4,4 +4,7 @@ IFS=$'\n\t'
 
 bundle install
 
+gem install st_tools --rdoc
+
+
 # Do any other automated setup that you need to do here
