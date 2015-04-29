@@ -27,9 +27,12 @@ en:
       [~, January, February, March, April, May, June, July, August, September, October, November, December]
     formats:
       default: "%m/%d/%Y"
-      date: "%B %-d, %Y"
-      full: "%B %-d, %Y %I:%M:%S %P"
-      time: "%I:%M:%S %P"
+      date_full: "%B %-d, %Y"
+      full_full: "%B %-d, %Y %I:%M:%S %P"
+      time_full: "%I:%M:%S %P"
+      date_short: "%m/%d/%Y"
+      full_short: "%m/%d/%Y %I:%M:%S %P"
+      time_short: "%I:%M %P"
   date:
     <<: *defaults
   time:

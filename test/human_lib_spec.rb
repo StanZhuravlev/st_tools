@@ -34,4 +34,20 @@ describe 'Проверка методов StTools::Human.*' do
     expect(test).to include('years')
   end
 
+  it '.format_time (:ru)' do
+    ::StTools::Setup.setup(:ru)
+    test = ::StTools::Human.format_time(Time.now, :full, :full)
+    expect(test).to match(/[а-я]{1,3}/)
+    test = ::StTools::Human.format_time(Time.now, :full, :short)
+    expect(test).to match(/\d{2}\/\d{2}\/\d{4}/)
+  end
+
+  it '.format_time (:en)' do
+    ::StTools::Setup.setup(:en)
+    test = ::StTools::Human.format_time(Time.now, :full, :full)
+    expect(test).to match(/[a-z]{1,3}/i)
+    test = ::StTools::Human.format_time(Time.now, :full, :short)
+    expect(test).to match(/\d{2}\/\d{2}\/\d{4}/)
+  end
+
 end

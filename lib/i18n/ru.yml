@@ -6,9 +6,12 @@ ru:
       [~, января, февраля, марта, апреля, мая, июня, июля, августа, сентября, октября, ноября, декабря]
     formats:
        default: "%d/%m/%Y"
-       date: "%-d %B %Y г."
-       full: "%-d %B %Y г. %H:%M:%S"
-       time: "%H:%M:%S"
+       date_full: "%-d %B %Y г."
+       full_full: "%-d %B %Y г. %H:%M:%S"
+       time_full: "%H:%M:%S"
+       date_short: "%d/%m/%Y"
+       full_short: "%d/%m/%Y %H:%M"
+       time_short: "%H:%M"
   date:
     <<: *defaults
   time:

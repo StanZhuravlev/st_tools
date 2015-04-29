@@ -56,12 +56,12 @@ module StTools
     # @option :date форматирует только дату
     # @option :time форматирует только время
     # @return [String] строка с форматированными датой и временем
-    def self.format_time(time, type = :full)
-      if [:full, :date, :time].include?(type) == false
-        warn "WARNING: type ':#{type.to_s}' must be in [:full, :date, :time]. Use ':full' now (at line #{__LINE__} of StTools::#{File.basename(__FILE__)})"
-        type = :full
+    def self.format_time(time, what, type)
+      if [:full, :date, :time].include?(what) == false
+        warn "WARNING: what ':#{what.to_s}' must be in [:full, :date, :time]. Use ':full' now (at line #{__LINE__} of StTools::#{File.basename(__FILE__)})"
+        what = :full
       end
-      return I18n.l(time, :format => type)
+      return I18n.l(time, :format => "#{what.to_s}_#{type.to_s}".to_sym)
     end
 
     private
