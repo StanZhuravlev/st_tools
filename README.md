@@ -71,6 +71,28 @@ StTools.Human.ago_in_words(Time.now - 15, true)                   # => 15 second
 
 Результирующая фраза всегда состоит из одного показатели (при разнице времени событий меньше минуты) или из двух (минуты/секунды, часы/минуты, дни/часы, месяцы/дни, года/месяцы)
 
+Вы имеете форматировать дату и время в соответствии с правилами русского и английского языка.
+
+```ruby
+StTools::Setup.setup(:ru)
+StTools.Human.format_time(Time.now, :full, :full)              # => 28 апреля 2015 г. 10:45:23
+StTools.Human.format_time(Time.now, :date, :full)              # => 28 апреля 2015 г.
+StTools.Human.format_time(Time.now, :time, :full)              # => 10:45:23
+StTools.Human.format_time(Time.now, :full, :short)             # => 28/04/2015 10:45
+StTools.Human.format_time(Time.now, :date, :short)             # => 28/04/2015
+StTools.Human.format_time(Time.now, :time, :short)             # => 10:45
+```
+
+```ruby
+StTools::Setup.setup(:en)
+StTools.Human.format_time(Time.now, :full, :full)              # => April 28, 2015 09:45:23 am
+StTools.Human.format_time(Time.now, :date, :full)              # => April 28, 2015
+StTools.Human.format_time(Time.now, :time, :full)              # => 09:45:23 am
+StTools.Human.format_time(Time.now, :full, :short)             # => 04/28/2015 09:45 am
+StTools.Human.format_time(Time.now, :date, :short)             # => 04/28/2015
+StTools.Human.format_time(Time.now, :time, :short)             # => 09:45 am
+```
+
 ### StTools::String
 
 ### StTools::System
