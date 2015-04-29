@@ -1,0 +1,112 @@
+require 'rspec'
+require 'st_tools'
+
+
+describe 'Проверка методов StTool::Fias.*' do
+
+  #-----------------------------------------------------
+  #
+  # Тесты получения aoguid
+  #
+  #-----------------------------------------------------
+  it '.uuid? success' do
+     test = ::StTools::Fias.uuid?('0c5b2444-70a0-4932-980c-b4dc0d3f02b5')
+     expect(test).to eq true
+  end
+
+  it '.uuid? fail' do
+    test = ::StTools::Fias.uuid?('0c5b2444-70a0-4932-980c')
+    expect(test).to eq false
+  end
+
+  it '.postalcode?("111558") success' do
+    test = ::StTools::Fias.postalcode?('111558')
+    expect(test).to eq true
+  end
+
+  it '.postalcode?("111") fail' do
+    test = ::StTools::Fias.postalcode?('111')
+    expect(test).to eq false
+  end
+
+  #-----------------------------------------------------
+  #
+  # Тесты получения aoguid
+  #
+  #-----------------------------------------------------
+  it 'moscow_aoguid' do
+    test = ::StTools::Fias.moscow_aoguid
+    expect(test).to eq '0c5b2444-70a0-4932-980c-b4dc0d3f02b5'
+  end
+
+  it 'spb_aoguid' do
+    test = ::StTools::Fias.spb_aoguid
+    expect(test).to eq 'c2deb16a-0330-4f05-821f-1d09c93331e6'
+  end
+
+  it 'sevastopol_aoguid' do
+    test = ::StTools::Fias.sevastopol_aoguid
+    expect(test).to eq '63ed1a35-4be6-4564-a1ec-0c51f7383314'
+  end
+
+  it 'baikonur_aoguid' do
+    test = ::StTools::Fias.baikonur_aoguid
+    expect(test).to eq '6fdecb78-893a-4e3f-a5ba-aa062459463b'
+  end
+
+
+  #-----------------------------------------------------
+  #
+  # Тесты проверки aoguid
+  #
+  #-----------------------------------------------------
+  it 'moscow? success' do
+    test = ::StTools::Fias.moscow?('0c5b2444-70a0-4932-980c-b4dc0d3f02b5')
+    expect(test).to eq true
+  end
+
+  it 'spb? success' do
+    test = ::StTools::Fias.spb?('c2deb16a-0330-4f05-821f-1d09c93331e6')
+    expect(test).to eq true
+  end
+
+  it 'sevastopol? success' do
+    test = ::StTools::Fias.sevastopol?('63ed1a35-4be6-4564-a1ec-0c51f7383314')
+    expect(test).to eq true
+  end
+
+  it 'baikonur? success' do
+    test = ::StTools::Fias.baikonur?('6fdecb78-893a-4e3f-a5ba-aa062459463b')
+    expect(test).to eq true
+  end
+
+  it 'moscow? fail' do
+    test = ::StTools::Fias.moscow?('c2deb16a-0330-4f05-821f-1d09c93331e6')
+    expect(test).to be false
+  end
+
+  it 'spb? fail' do
+    test = ::StTools::Fias.spb?('63ed1a35-4be6-4564-a1ec-0c51f7383314')
+    expect(test).to eq false
+  end
+
+  it 'sevastopol? fail' do
+    test = ::StTools::Fias.sevastopol?('6fdecb78-893a-4e3f-a5ba-aa062459463b')
+    expect(test).to eq false
+  end
+
+  it 'baikonur? fail' do
+    test = ::StTools::Fias.baikonur?('c2deb16a-0330-4f05-821f-1d09c93331e6')
+    expect(test).to eq false
+  end
+
+  it 'federal? success' do
+    test = ::StTools::Fias.federal?('0c5b2444-70a0-4932-980c-b4dc0d3f02b5')
+    expect(test).to eq true
+  end
+
+  it 'federal? fail' do
+    test = ::StTools::Fias.federal?('0c5b2444-70a0-4932-980c-b4dc053f02b5')
+    expect(test).to eq false
+  end
+end

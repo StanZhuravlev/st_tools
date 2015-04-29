@@ -1,0 +1,46 @@
+ru:
+  hello: "Привет, мир!"
+
+  defaults: &defaults
+    month_names:
+      [~, января, февраля, марта, апреля, мая, июня, июля, августа, сентября, октября, ноября, декабря]
+    formats:
+       default: "%d/%m/%Y"
+       date: "%-d %B %Y г."
+       full: "%-d %B %Y г. %H:%M:%S"
+       time: "%H:%M:%S"
+  date:
+    <<: *defaults
+  time:
+    <<: *defaults
+
+
+  common:
+    ago:
+      very_long: 'очень давно'
+      just_now: 'сейчас'
+      ago_word: 'назад'
+      year:
+        one: год
+        two: года
+        other: лет
+      month:
+        one: месяц
+        two: месяца
+        other: месяцев
+      day:
+        one: день
+        two: дня
+        other: дней
+      hour:
+        one: час
+        two: часа
+        other: часов
+      minute:
+        one: минута
+        two: минуты
+        other: минут
+      second:
+        one: секунда
+        two: секунды
+        other: секунд
