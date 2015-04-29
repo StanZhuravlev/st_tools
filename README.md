@@ -29,15 +29,47 @@ gem 'st_tools'
 
 ## Использование
 
+Часть методов библиотеки поддерживают русскую и английскую локализацию.
+Поскольку все методы StTools могут вызываться без создания класса - конструктор не вызывается.
+Поэтому перед работой библиотеки рекомендуется вызвать StTools::Setup.setup(:ru или :en).
+
 ### StTools::Human
 
 Вы вызываете в любой момент StTools::Human.memory и узнаете текущий размер памяти, занимаемый приложением (процессом)
 
 ```ruby
-StTools.Human.memory               № => 14 кбайт
-StTools.Human.memory               № => 45,3 Мбайт
-StTools.Human.memory               № => 2,6 Гбайт
+StTools.Human.memory               # => 14 кбайт
+StTools.Human.memory               # => 45,3 Мбайт
+StTools.Human.memory               # => 2,6 Гбайт
 ```
+
+Вы вызываете StTools::Human.bytes и перевести любое значение в человеко-удобный вид. Метод можно использовать для показа размера файла
+
+```ruby
+StTools.Human.bytes(345)           # => 345 байт
+StTools.Human.bytes(14653)         # => 14,5 кбайт
+StTools.Human.bytes(23653763)      # => 23,4 Мбайт
+```
+
+Вы имеете возможность узнать разницу между текущим временем и временем какого-либо события.
+
+```ruby
+StTools::Setup.setup(:ru)
+StTools.Human.ago_in_words(DateTime.new(2014,12,31), true)        # => 4 месяца 21 день назад
+StTools.Human.ago_in_words(DateTime.new(2013,08,01), false)       # => 1 год 8 месяца
+StTools.Human.ago_in_words(Time.now - 15, true)                   # => 15 секунд назад
+```
+
+```ruby
+StTools::Setup.setup(:en)
+StTools.Human.ago_in_words(DateTime.new(2014,12,31), true)        # => 4 months 21 days ago
+StTools.Human.ago_in_words(DateTime.new(2013,08,01), false)       # => 1 year 8 months
+StTools.Human.ago_in_words(Time.now - 15, true)                   # => 15 seconds ago
+```
+
+Устанавливая флаг ```ruby ago=true```, метод добавит слово "назад" или "ago" в конце фразы.
+
+Результирующая фраза всегда состоит из одного показатели (при разнице времени событий меньше минуты) или из двух (минуты/секунды, часы/минуты, дни/часы, месяцы/дни, года/месяцы)
 
 ### StTools::String
 
