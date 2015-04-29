@@ -32,7 +32,7 @@ module StTools
     def progress=(val)
       return if val > @max
       return if val == @value
-      return if val % @step != 0 && (@max - val) > @step
+      return if val % @step != 0 && (@max - val) >= @step
 
       @progress = val
       @pbar.progress = val

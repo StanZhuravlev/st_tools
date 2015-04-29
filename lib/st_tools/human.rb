@@ -1,11 +1,34 @@
 module StTools
   class Human
 
+
+    # Функция возвращает форматированную строку из любого числа с суффиксом тыс., млн. и пр.
+    #
+    # @param [Integer] val значение
+    # @return [String] строка вида "512,4 кило"
+    def self.number(val)
+      # todo: локлаизовать через i18N
+      # noinspection RubyStringKeysInHashInspection
+      arr = {'' => 1000, 'тыс.' => 1000 * 1000, 'млн.' => 1000 * 1000 * 1000,
+             'млрд.' => 1000 * 1000 * 1000 * 1000, 'трлн.' => 1000 * 1000 * 1000 * 1000 * 1000}
+
+      arr.each_pair do |e, s|
+        if val < s
+          if ['', ' тыс.'].include?(e)
+            return "#{(val.to_f / (s / 1000)).round(0)} #{e}"
+          else
+            return "#{(val.to_f / (s / 1000)).round(1)} #{e}"
+          end
+        end
+      end
+    end
+
     # Функция возвращает форматированную строку из любого числа с объемом памяти.
     #
     # @param [Integer] val значение в байтах
     # @return [String] строка вида "512,4 Мбайт"
     def self.bytes(val)
+      # todo: локлаизовать через i18N
       # noinspection RubyStringKeysInHashInspection
       arr = {'байт' => 1024, 'кбайт' => 1024 * 1024, 'Мбайт' => 1024 * 1024 * 1024,
              'Гбайт' => 1024 * 1024 * 1024 * 1024, 'Тбайт' => 1024 * 1024 * 1024 * 1024 * 1024}

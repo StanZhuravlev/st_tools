@@ -5,6 +5,13 @@ module StTools
       # Переводит число в строку с размером в байтах, кбайтах, Мбайтах и пр.
       #
       # @return [String] строка с суффиксом
+      def human_number
+        ::StTools::Human.number(self)
+      end
+
+      # Переводит число в строку с размером в байтах, кбайтах, Мбайтах и пр.
+      #
+      # @return [String] строка с суффиксом
       def human_bytes
         ::StTools::Human.bytes(self)
       end

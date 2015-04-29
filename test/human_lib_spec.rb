@@ -15,6 +15,17 @@ describe 'Проверка методов StTools::Human.*' do
     expect(test).to include('кбайт')
   end
 
+  it '.number(234)' do
+    test = ::StTools::Human.number(234)
+    expect(test).to include('234')
+  end
+
+  it '.number(14234)' do
+    test = ::StTools::Human.number(14234)
+    expect(test).to include('14')
+    expect(test).to include('тыс.')
+  end
+
   it '.memory' do
     test = ::StTools::Human.memory
     expect(test).to include('байт')
