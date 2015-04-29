@@ -14,17 +14,30 @@
 gem 'st_tools'
 ```
 
-Выполнить:
+Установите гем cредствами Bundler:
 
     $ bundle
 
-Инсталлировать на рабочую машину:
+Или установите его отдельно:
 
     $ gem install st_tools
 
-## Использование и примеры
+# Зависимости
+
+Для работы гема требуется Ruby не младше версии 2.0.0. StTools не привязана к Rails и может использоваться в CLI-приложениях.
+ Класс StTools::ProgressBar является надстройкой над гемом 'progressbar-ruby'.
+
+## Использование
 
 ### StTools::Human
+
+Вы вызываете в любой момент StTools::Human.memory и узнаете текущий размер памяти, занимаемый приложением (процессом)
+
+```ruby
+StTools.Human.memory               № => 14 кбайт
+StTools.Human.memory               № => 45,3 Мбайт
+StTools.Human.memory               № => 2,6 Гбайт
+```
 
 ### StTools::String
 
