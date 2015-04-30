@@ -1,10 +1,12 @@
 module StTools
   class String
 
-    # Функция преобразует текст в транслит
+    # Метод преобразует текст в транслит
     #
     # @param [String] text исходная строка с русскими буквами
     # @return [String] строка в транслите
+    # @example Примеры использования
+    #   StTools::String.translit("Жмеринка")   #=> "Zhmerinka"
     def self.translit(text)
       return nil if text.nil?
       translited = text.tr('абвгдеёзийклмнопрстуфхэыь', 'abvgdeezijklmnoprstufhey\'\'')
@@ -18,31 +20,38 @@ module StTools
       return translited
     end
 
-    # Функция с хорошей производительностью преобразует строку в нижний регистр.
-    # Одновременно буква 'ё' замещается на 'е'
+    # Метод преобразует строку в нижний регистр с одновременной заменой буквы 'ё' на 'е'.
+    # Метод имеет примерно в два раза более высокую производительности по сравнению с традиционным .mb_chars.downcase.to_s,
+    # но имеет ограничение - работа только с русскими и английскими строками
     #
     # @param [String] text строка в произвольном регистре
     # @return [String] строка в нижнем регистре
+    # @example Примеры использования
+    #   StTools::String.downcase("Hello, Вася!")   #=> "hello, вася!"
     def self.downcase(text)
       return nil if text.nil?
       return text.tr('QWERTYUIOPASDFGHJKLZXCVBNMАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ',
                      'qwertyuiopasdfghjklzxcvbnmабвгдеёжзийклмнопрстуфхцчшщъыьэюя').gsub('ё', 'е')
     end
 
-    # Функция с хорошей производительностью преобразует строку в верхний регистр.
-    # Одновременно буква 'Ё' замещается на 'Е'
+    # Метод преобразует строку в верхний регистр с одновременной заменой буквы 'Ё' на 'Е'.
+    # Метод имеет примерно в два раза более высокую производительности по сравнению с традиционным .mb_chars.downcase.to_s,
+    # но имеет ограничение - работа только с русскими и английскими строками
     #
     # @param [String] text строка в произвольном регистре
-    # @return [String] строка в нижнем регистре
+    # @return [String] строка в верхнем регистре
+    # @example Примеры использования
+    #   StTools::String.upcase("Hello, Вася!")   #=> "HELLO, ВАСЯ!"
     def self.upcase(text)
       return nil if text.nil?
       return text.tr('qwertyuiopasdfghjklzxcvbnmабвгдеёжзийклмнопрстуфхцчшщъыьэюя',
                      'QWERTYUIOPASDFGHJKLZXCVBNMАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ').gsub('Ё', 'Е')
     end
 
-    # Функция заменяет в исходной строке символы английские, но похожие
-    # на русские на соответстующие русские. То есть это похоже на ситуацию,
-    # когда Google меняет случайно написанное английскими буквами на русское
+    # Метод заменяет в исходной строке английские символы, похожие
+    # на русские - на соответстующие русские символы. То есть это похоже на ситуацию,
+    # когда Google меняет слово, случайно написанное английскими буквами - на русское слово. Одновременно
+    # буква 'ё' меняется на 'е'.
     #
     # @param [String] text текст со смесью английских и русских букв
     # @return [String] текст только с русскими буквами
@@ -51,28 +60,33 @@ module StTools
       return text.tr('ёЁEeHCcTOoPpAHKXxBM', 'еЕЕеНСсТОоРрАНКХхВМ')
     end
 
-    # Данную функцию рекомендуется вызывать каждый раз, как юзер вводит текст,
-    # для того, чтобы:
-    # - убрать букву 'ё'
-    # - перевести строку в нижний регистр
-    # - заменить случайно введенные английские буквы на русские
-    # - убрать лидирующие и завершающие пробелы
-    # - оставить в строке только один пробел между слов
+    # Метод проводит нормализацию строки для последующей машиной обработки. При этом осуществляется:
+    # - убирается букву 'ё'
+    # - перевод строку в нижний регистр
+    # - замена случайно введенных английских букв на русские
+    # - убираются лидирующие и завершающие пробелы
+    # - в строке удаляются повторные пробелы между словами
     #
     # @param [String] text строка, введенная пользователям
     # @return [String] строка без 'ё', в нижнем регистре, без английских букв
+    # @example Примеры использования
+    #   StTools::String.normalize("  Ёлки-     ПАЛКИ")   #=> "елки- палки"
     def self.normalize(text)
       return nil if text.nil?
       return self.downcase(self.delat(text)).strip.gsub(/\s{1,100}/, ' ')
     end
 
-    # Для целей выдачи информации клиенту в неполном объеме, данная функция позволяет
-    # закрыть часть строки звездочками. При этом число звездочек в строке определеяется
-    # ее длиной. Чем строка дилинее - тем больше в ней звездочек
+    # Метод позволяет показывать клиенту строку в неполном объеме, с закрытием части символов в строке звездочкой.
+    # При этом число звездочек в строке определеяется ее длиной. Чем строка дилинее - тем больше в ней звездочек.
     #
     # @param [String] text строка, которую необходимо закрыть звездочками
     # @return [String] строка, часть символов которой заменена звездочками
-    def self.hide_text(text)
+    # @example Примеры использования
+    #   StTools::String.hide("мы")                          #=> "мы"
+    #   StTools::String.hide("москва")                      #=> "мо*ква"
+    #   StTools::String.hide("длиннаяфраза")                #=> "дли**аяфраза"
+    #   StTools::String.hide("просто произвольная фраза")   #=> "**осто пр*извол*н*я фраза"
+    def self.hide(text)
       return nil if text.nil?
       len = text.length - 3
       0.upto((len/4).to_i) do
@@ -82,7 +96,7 @@ module StTools
       return text
     end
 
-    # Функция аналогична обычной функции split, однако дополнительно может выполнять следующие действия
+    # Метод аналогичен обычной функции split, однако дополнительно может выполнять следующие действия:
     # - strip каждого элемента
     # - normalize соответсвующей функцией (#normalize)
     # - сортировка в прямом порядке
@@ -95,8 +109,13 @@ module StTools
     # @option opts [Boolean] :sort - сортировать выходной массив
     # @option opts [Boolean] :uniq - удалить из массива дубликаты
     # @return [Array] массив элементов из строки
+    # @example Примеры использования
+    #   StTools::String.split("саша, Паша,   ТАНЯ, Алина", ',')                                                 #=> ["саша", "Паша", "ТАНЯ", "Алина"]
+    #   StTools::String.split("саша, Паша,   ТАНЯ, Алина", ',', normalize: true)                                #=> ["саша", "паша", "таня", "алина"]
+    #   StTools::String.split("саша, Паша,   ТАНЯ, Алина", ',', normalize: true, sort: true)                    #=> ["алина", "паша", "саша", "таня"]
+    #   StTools::String.split("саша, Паша,   ТАНЯ, Алина,  таня", ',', normalize: true, sort: true, uniq: true) #=> ["алина", "паша", "саша", "таня"]
     def self.split(text, separator, opts = {})
-      return nil if text.nil?
+      return [] if text.nil?
       out = text.split(separator)
       out.map! { |x| x.strip }
       out.map! { |x| self.normalize(x) } if opts[:normalize]
@@ -108,7 +127,7 @@ module StTools
       return []
     end
 
-    # Функция возвращает полный массив Array [1, 4, 5, 6, 7, 456] для строк вида '1, 4, 5-7, 456'.
+    # Метод возвращает полный массив Array [1, 4, 5, 6, 7, 456] для строк вида '1, 4, 5-7, 456'.
     # Дополнительно осуществляется:
     # - сортировка в прямом порядке
     # - удаление дубликотов
@@ -118,8 +137,12 @@ module StTools
     # @option opts [Boolean] :sort - сортировать выходной массив
     # @option opts [Boolean] :uniq - удалить из массива дубликаты
     # @return [Array] массив чисел
+    # @example Примеры использования
+    #   StTools::String.to_range("1, 4, 5-7, 456, 6")                           #=> [1, 4, 5, 6, 7, 456, 6]
+    #   StTools::String.to_range("1, 4, 5-7, 456, 6", sort: true)               #=> [1, 4, 5, 6, 6, 7, 456]
+    #   StTools::String.to_range("1, 4, 5-7, 456, 6", sort: true, uniq: true)   #=> [1, 4, 5, 6, 7, 456]
     def self.to_range(text, opts = {})
-      return nil if text.nil?
+      return [] if text.nil?
       out = Array.new
 
       tmp = self.split(text, ',')
@@ -138,11 +161,12 @@ module StTools
       return out
     end
 
-    # Функция делает заглавной первую букву в словах, разделенных пробелами или тире.
-    # Подключеие ActiveSupport не требуется
+    # Метод делает заглавной первую букву в словах, разделенных пробелами или дефисом.
     #
     # @param [String] text исходная строка
     # @return [String] строка с первыми заглавными буквами
+    # @example Примеры использования
+    #   StTools::String.caps("саНКТ-петеРБург")    #=> "Санкт-Петербург"
     def self.caps(text)
       return nil if text.nil?
       str = self.downcase(text).split(/[\-\s]/).map { |x| self.upcase(x[0]) + x[1,x.length] }
@@ -156,13 +180,24 @@ module StTools
       return text
     end
 
-    # Функция формирует boolean значение из строки
+    # Метод конвертирует строку в тип boolean
     #
     # @param [String] text исходная строка, содержащая 'true/false', 'on/off', '1/0'
     # @return [Boolean] true или false
+    # @example Примеры использования
+    #   StTools::String.to_bool("True")    #=> true
+    #   StTools::String.to_bool("trUE")    #=> true
+    #   StTools::String.to_bool("on")      #=> true
+    #   StTools::String.to_bool("1")       #=> true
+    #   StTools::String.to_bool("Да")      #=> true
+    #   StTools::String.to_bool("Yes")     #=> true
+    #   StTools::String.to_bool("false")   #=> false
+    #   StTools::String.to_bool("fALse")   #=> false
+    #   StTools::String.to_bool("oFF")     #=> false
+    #   StTools::String.to_bool("0")       #=> false
     def self.to_bool(text)
       return false if text.nil?
-      return true if ['true', 'on', '1'].include?(self.downcase(text.to_s))
+      return true if ['true', 'on', '1', 'да', 'yes'].include?(self.downcase(text.to_s))
       false
     end
 

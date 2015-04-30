@@ -1,6 +1,13 @@
 module StTools
   class ProgressBar
-    attr_reader :usage, :progress, :executed_at
+    # Количество вызовов метода progress=.
+    attr_reader :usage
+    # Текущее значение прогресс-бара
+    attr_reader :progress
+    # Время выполнения всей операции в секундах (формируется после достижения max)
+    attr_reader :executed_at
+    # Максимальное значение прогресс-бара
+    attr_reader :max
 
     # Инициализация прогресс-бара
     #
@@ -8,7 +15,8 @@ module StTools
     # @option opts [String] :title заголовок прогресс-бара
     # @option opts [Integer] :max максимальное значение
     # @option opts [Integer] :progress текущее значение (по умолчанию 0)
-    # @option opts [String] :footer резюмирующая строка. Допускает два шаблона: [memory] и [executed_at]
+    # @option opts [String] :footer резюмирующая строка. Допускает два шаблона: [memory] и [executed_at], например:
+    #   "Завершено за [executed_at] секунд. Занятая память [memory]"
     # @option opts [Integer] :step шаг кратно которому реально перерисовывается прогресс-бар
     # @return [Object] нет
     def initialize(opts = {})
@@ -25,7 +33,7 @@ module StTools
       init_progress_bar
     end
 
-    # Функция устанавливает новое значение прогресс-бара
+    # Метод устанавливает новое значение прогресс-бара
     #
     # @param [Integer] val новое значение прогресс-бара. Если равно max - то вызывается функция вывода футера
     # @return [Object] нет
@@ -42,6 +50,7 @@ module StTools
         puts_footer
       end
     end
+
 
     private
 

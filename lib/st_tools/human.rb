@@ -2,10 +2,14 @@ module StTools
   class Human
 
 
-    # Функция возвращает форматированную строку из любого числа с суффиксом тыс., млн. и пр.
+    # Метод форматирует число, добавляя суффиксы 'тыс.', 'млн.' и пр.
     #
-    # @param [Integer] val значение
-    # @return [String] строка вида "512,4 кило"
+    # @param [Integer] val исходное числовое значение
+    # @return [String] строка вида "512,4 тыс."
+    # @example Примеры использования
+    #   StTools::Human.number(123)           #=> "123"
+    #   StTools::Human.number(14563)         #=> "14 тыс."
+    #   StTools::Human.number(763552638)     #=> "763.6 млн."
     def self.number(val)
       # todo: локлаизовать через i18N
       # noinspection RubyStringKeysInHashInspection
@@ -23,10 +27,14 @@ module StTools
       end
     end
 
-    # Функция возвращает форматированную строку из любого числа с объемом памяти.
+    # Метод форматирует число, добавляя суффиксы 'кбайт', 'Мбайт' и др.
     #
-    # @param [Integer] val значение в байтах
+    # @param [Integer] val исходное числовое значение в байтах
     # @return [String] строка вида "512,4 Мбайт"
+    # @example Примеры использования
+    #   StTools::Human.bytes(123)           #=> "123 байта"
+    #   StTools::Human.bytes(14563)         #=> "14 кбайт"
+    #   StTools::Human.bytes(763552638)     #=> "728.2 Мбайт"
     def self.bytes(val)
       # todo: локлаизовать через i18N
       # noinspection RubyStringKeysInHashInspection
@@ -44,7 +52,7 @@ module StTools
       end
     end
 
-    # Функция возвращает форматированную строку с объемом памяти, занимаемым текущим процессом (pid).
+    # Метод возвращает форматированную строку с объемом памяти, занимаемым текущим процессом (pid).
     #
     # @return [String] строка вида "512,4 Мбайт"
     def self.memory
@@ -52,12 +60,17 @@ module StTools
       return self.bytes(val)
     end
 
-    # Функция переводит DateTime в строку на русском или иных языках вида "4 дня 23 часа назад".
-    # Предварительно необходимо вызвать StTools.setup(:ru).
+    # Метод переводит DateTime в строку на русском или иных языках вида "4 дня 23 часа назад".
+    # Предварительно необходимо вызвать StTools.setup(:ru или :en).
     #
     # @param [DateTime] time время и дата
-    # @param [Boolean] ago добавление слова "назад" в конец строки
+    # @param [Boolean] ago true, если надо добавить слово "назад" в конец строки
     # @return [String] строка вида "3 дня 12 часов" или "3 дня 12 часов назад"
+    # @example Примеры использования
+    #   StTools::Setup.setup(:ru)
+    #   StTools::Human.ago_in_words(Time.now - 23, true)       #=> "23 секунды назад"
+    #   StTools::Human.ago_in_words(Time.now - 24553, false)   #=> 6 часов 49 минут"
+    #   StTools::Human.ago_in_words(Time.now)                  #=> "сейчас"
     def self.ago_in_words(time, ago = true)
       now = self.to_time(Time.now.strftime('%Y-%m-%d %H:%M:%S UTC'))
       slf = self.to_time(time.strftime('%Y-%m-%d %H:%M:%S UTC'))
@@ -70,24 +83,40 @@ module StTools
       pair.join(' ')
     end
 
-    # Функция переводит DateTime в строку на русском или иных языках. Предварительно необходимо вызвать
-    # StTools.setup(:ru).
+    # Метод переводит DateTime в строку на русском или иных языках. Предварительно необходимо вызвать
+    # StTools.setup(:ru или :en).
     #
-    # @param [DateTime] time время и дата
-    # @param [Sym] type формат возвращаемого результата
+    # @param [DateTime] time исходные время и дата
+    # @param [Sym] what формат возвращаемого результата, принимает одно из следующих значений
     # @option :full форматирует дату и время (по умолчанию)
     # @option :date форматирует только дату
     # @option :time форматирует только время
+    # @param [Sym] type форма в которой возращать результат: длинная ("28 апреля 2015 г. 10:34:52") или короткая ("28/04/2015 10:34")
+    # @option :full длинна форма
+    # @option :short короткая форма
     # @return [String] строка с форматированными датой и временем
+    # @example Примеры использования
+    #   StTools::Setup.setup(:ru)
+    #   StTools::Human.format_time(Time.now, :full, :full)       #=> "30 апреля 2015 г. 08:54:34"
+    #   StTools::Human.format_time(Time.now, :date, :full)       #=> "30 апреля 2015 г."
+    #   StTools::Human.format_time(Time.now, :time, :full)       #=> "08:54:34"
+    #   StTools::Human.format_time(Time.now, :full, :short)      #=> "30/04/2015 08:55"
+    #   StTools::Human.format_time(Time.now, :date, :short)      #=> "30/04/2015"
+    #   StTools::Human.format_time(Time.now, :time, :short)      #=> "08:55"
     def self.format_time(time, what, type)
-      if [:full, :date, :time].include?(what) == false
+      unless [:full, :date, :time].include?(what)
         warn "WARNING: what ':#{what.to_s}' must be in [:full, :date, :time]. Use ':full' now (at line #{__LINE__} of StTools::#{File.basename(__FILE__)})"
         what = :full
       end
       return I18n.l(time, :format => "#{what.to_s}_#{type.to_s}".to_sym)
     end
 
+
+
     private
+
+
+
 
     def self.ago_in_words_pair(secs)
       mins = (secs / 60).to_i

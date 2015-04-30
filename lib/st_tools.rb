@@ -19,9 +19,17 @@ module StTools
 
   class Setup
 
+    # Метод загрузки файлов локализации для методов форматирования времени. Принимает значения [:en, :ru]
+    #
+    # @param [Object] locale - язык локализации, поддерживается :ru, :en. Если передена неизвестная локализация
+    #   по умолчанию будет использована :ru
+    # @return [Object] нет
     def self.setup(locale)
+      locale = :ru unless [:ru, :en].include?(locale)
       self.setup_locale(locale)
     end
+
+    private
 
     def self.setup_locale(locale)
       require 'i18n'

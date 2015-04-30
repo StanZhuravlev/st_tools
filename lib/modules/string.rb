@@ -51,7 +51,7 @@ module StTools
       # @example Сокрытие части строки
       #   "Владимир".hide #=> "Вл*ди*ир"
       def hide
-        ::StTools::String.hide_text(self)
+        ::StTools::String.hide(self)
       end
 
       # Метод разделяет строку на подстроки, и нормализует кажду подстроку через #normalize
