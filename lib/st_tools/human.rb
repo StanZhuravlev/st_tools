@@ -68,10 +68,10 @@ module StTools
     # @return [String] строка вида "3 дня 12 часов" или "3 дня 12 часов назад"
     # @example Примеры использования
     #   StTools::Setup.setup(:ru)
-    #   StTools::Human.ago_in_words(Time.now - 23, true)       #=> "23 секунды назад"
-    #   StTools::Human.ago_in_words(Time.now - 24553, false)   #=> 6 часов 49 минут"
-    #   StTools::Human.ago_in_words(Time.now)                  #=> "сейчас"
-    def self.ago_in_words(time, ago = true)
+    #   StTools::Human.human_ago(Time.now - 23, true)       #=> "23 секунды назад"
+    #   StTools::Human.human_ago(Time.now - 24553, false)   #=> 6 часов 49 минут"
+    #   StTools::Human.human_ago(Time.now)                  #=> "сейчас"
+    def self.human_ago(time, ago = true)
       now = self.to_time(Time.now.strftime('%Y-%m-%d %H:%M:%S UTC'))
       slf = self.to_time(time.strftime('%Y-%m-%d %H:%M:%S UTC'))
       secs = (now - slf).to_i
@@ -79,6 +79,27 @@ module StTools
       return I18n.t('common.ago.just_now') if secs > -1 && secs < 1
       return '' if secs <= -1
       pair = self.ago_in_words_pair(secs)
+      pair << I18n.t("common.ago.ago_word") if ago == true
+      pair.join(' ')
+    end
+
+    # Метод принимает параметр - количество секунд между двумя любыми событиями в секундах,
+    # и переводит их в строку на русском или иных языках вида "4 дня 23 часа назад".
+    # Предварительно необходимо вызвать StTools.setup(:ru или :en).
+    #
+    # @param [DateTime] sesc количество секунд
+    # @param [Boolean] ago true, если надо добавить слово "назад" в конец строки
+    # @return [String] строка вида "3 дня 12 часов" или "3 дня 12 часов назад"
+    # @example Примеры использования
+    #   StTools::Setup.setup(:ru)
+    #   StTools::Human.seconds_ago(23, true)       #=> "23 секунды назад"
+    #   StTools::Human.seconds_ago(24553, false)   #=> 6 часов 49 минут"
+    #   StTools::Human.seconds_ago(0)              #=> "сейчас"
+    def self.seconds_ago(secs, ago = true)
+      secs_i = secs.to_i
+      return I18n.t('common.ago.just_now') if secs_i > -1 && secs_i < 1
+      return '' if secs_i <= -1
+      pair = self.ago_in_words_pair(secs_i)
       pair << I18n.t("common.ago.ago_word") if ago == true
       pair.join(' ')
     end

@@ -70,14 +70,27 @@ StTools.Human.ago_in_words(Time.now - 15, true)                   # => 15 сек
 
 ```ruby
 StTools::Setup.setup(:en)
-StTools.Human.ago_in_words(DateTime.new(2014,12,31), true)        # => 4 months 21 days ago
-StTools.Human.ago_in_words(DateTime.new(2013,08,01), false)       # => 1 year 8 months
-StTools.Human.ago_in_words(Time.now - 15, true)                   # => 15 seconds ago
+StTools.Human.human_ago(DateTime.new(2014,12,31), true)        # => 4 months 21 days ago
+StTools.Human.human_ago(DateTime.new(2013,08,01), false)       # => 1 year 8 months
+StTools.Human.human_ago(Time.now - 15, true)                   # => 15 seconds ago
 ```
 
 Устанавливая флаг ```ago=true```, метод добавит слово "назад" или "ago" в конце фразы.
 
-Результирующая фраза всегда состоит из одного показатели (при разнице времени событий меньше минуты) или из двух (минуты/секунды, часы/минуты, дни/часы, месяцы/дни, года/месяцы)
+Результирующая фраза всегда состоит из одного показатели (при разнице времени событий меньше минуты)
+или из двух (минуты/секунды, часы/минуты, дни/часы, месяцы/дни, года/месяцы)
+
+Иногда возникает другой кейс, когда нужно рассчитать разницу во времени не относительно текущей даты,
+а относительно любых двух произвольных событий. Для этого может использоваться метод, в который передается
+не временная метка, а просто количество секунд между двумя событиями.
+
+```ruby
+StTools::Setup.setup(:ru)
+.seconds_ago(DateTime.new(2014,12,31), true)        # => 4 months 21 days ago
+StTools.Human.seconds_ago(DateTime.new(2013,08,01), false)       # => 1 year 8 months
+StTools.Human.seconds_ago(Time.now - 15, true)                   # => 15 seconds ago
+```
+
 
 Вы имеете форматировать дату и время в соответствии с правилами русского и английского языка.
 
@@ -107,7 +120,7 @@ StTools.Human.format_time(Time.now, :time, :short)             # => 09:45 am
 StTools::Setup.setup(:ru)
 
 class String
-   extend StTools::Module::String
+   include StTools::Module::String
 end
 
 (Time.now - 15).human_ago                         # => 15 секунд назад
@@ -129,7 +142,7 @@ StTools::String.translit('Жмеринка')                  # => Zhmerinka
 StTools::String.delat('Соль')                         # => Соль
 ```
 
-Перевести строку в верхний или нижний регистр. Используется метод, альтернативный mb_chars (примерно в два раза производительней)
+Перевести строку в верхний или нижний регистр. Используется метод, не использующий :mb_chars
 
 ```ruby
 StTools::String.downcase('Москва')                    # => москва
@@ -196,7 +209,7 @@ StTools::String.to_range('54, 3-6, 5, 1', uniq: true, sort: true)         # => [
 StTools::Setup.setup(:ru)
 
 class String
-   extend StTools::Module::String
+   include StTools::Module::String
 end
 
 'санКТ-петерБург'.caps                         # => Санкт-Петербург

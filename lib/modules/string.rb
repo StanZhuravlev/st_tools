@@ -100,6 +100,19 @@ module StTools
         ::StTools::String.to_bool(self)
       end
 
+      private
+
+      # Удаляем функции downcase, upcase из оригинального класса String
+      # чтобы вместо них вызывались новые функции из модуля StTools::Module::String
+      # Если этого не делать, то всегда будут вызываться соответствующие методы оригинального
+      # класса String
+      def self.included(klass)
+        klass.class_eval do
+          remove_method :downcase
+          remove_method :upcase
+        end
+      end
+
     end
   end
 end

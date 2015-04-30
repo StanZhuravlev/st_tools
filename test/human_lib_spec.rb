@@ -31,18 +31,32 @@ describe 'Проверка методов StTools::Human.*' do
     expect(test).to include('байт')
   end
 
-  it '.ago_in_words (:ru)' do
+  it '.human_ago (:ru)' do
     ::StTools::Setup.setup(:ru)
-    test = ::StTools::Human.ago_in_words(DateTime.new(2001,2,3,4,5,6,'+7'), true)
+    test = ::StTools::Human.human_ago(DateTime.new(2001,2,3,4,5,6,'+7'), true)
     expect(test).to include('назад')
     expect(test).to include('лет')
   end
 
-  it '.ago_in_words (:en)' do
+  it '.human_ago (:en)' do
     ::StTools::Setup.setup(:en)
-    test = ::StTools::Human.ago_in_words(DateTime.new(2001,2,3,4,5,6,'+7'), true)
+    test = ::StTools::Human.human_ago(DateTime.new(2001,2,3,4,5,6,'+7'), true)
     expect(test).to include('ago')
     expect(test).to include('years')
+  end
+
+  it '.seconds_ago (:ru)' do
+    ::StTools::Setup.setup(:ru)
+    test = ::StTools::Human.seconds_ago(67, true)
+    expect(test).to include('назад')
+    expect(test).to include('1 минута')
+  end
+
+  it '.seconds_ago (:en)' do
+    ::StTools::Setup.setup(:en)
+    test = ::StTools::Human.seconds_ago(67, true)
+    expect(test).to include('ago')
+    expect(test).to include('1 minute')
   end
 
   it '.format_time (:ru)' do
