@@ -10,18 +10,18 @@ Gem::Specification.new do |spec|
   spec.email         = ["stan@post-api.ru"]
 
   spec.summary       = %q{Методы общего назначения}
-  spec.description   = %q{Библиотека содержит функции, реализующие:
-- преобразование строк с учетом русского языка
-- формирования человеко-удобной информации
-- получения разных системных характеристик CLI-приложений
-- управление прогресс-баром CLI-приложений}
+  spec.description   = %q{Библиотека StTools предназначена для поддержки CLI- и Rails-приложений. Она обеспечивает
+различное преобразование строк с учетом русского языка, формирование человеко-удобного представления времени и чисел,
+получения разных системных характеристик CLI-приложений (память, размер экрана терминала),
+управление прогресс-баром CLI-приложений.}
   spec.homepage      = "https://github.com/StanZhuravlev/st_tools"
   spec.license       = "MIT"
+  spec.required_ruby_version = '~> 2.0'
 
   # Prevent pushing this gem to RubyGems.org by setting 'allowed_push_host', or
   # delete this section to allow pushing this gem to any host.
   if spec.respond_to?(:metadata)
-    spec.metadata['allowed_push_host'] = "TODO: Set to 'http://mygemserver.com'"
+    spec.metadata['allowed_push_host'] = "https://rubygems.org"
   else
     raise "RubyGems 2.0 or newer is required to protect against public gem pushes."
   end

@@ -39,7 +39,7 @@ describe 'Проверка методов StTools::String.*' do
   end
 
   it '.hide_text' do
-    test = ::StTools::String.hide_text('Ярослав    Му(y)дрёный')
+    test = ::StTools::String.hide('Ярослав    Му(y)дрёный')
     expect(test).to include('*')
   end
 
