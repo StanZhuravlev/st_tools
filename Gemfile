@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 gemspec
 
 require 'rubygems'
+require 'yaml'
 
 gem 'ruby-progressbar'
 

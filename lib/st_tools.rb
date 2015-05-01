@@ -3,6 +3,7 @@ $LOAD_PATH.unshift File.join(__dir__, *%w[.. lib])
 require "st_tools/version"
 
 require 'ruby-progressbar'
+require 'yaml'
 
 module StTools
   require 'st_tools/common'

@@ -63,7 +63,7 @@ module StTools
       # @return [Array] массив чисел
       # @example Преобразование строки в массив чисел
       #   "Москва , Питер , Владимир".split(",") #=> ['москва', 'питер', 'владимир']
-      def split(separator, opts = {})
+      def st_split(separator, opts = {})
         ::StTools::String.split(self, separator, opts)
       end
 
