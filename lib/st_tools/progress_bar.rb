@@ -67,7 +67,7 @@ module StTools
 
       return if @footer == ''
 
-      @executed_at_txt = @executed_at.to_i
+      @executed_at_txt = @executed_at.to_s
       @executed_at_txt = @executed_at.round(1).to_s if @executed_at < 60
       @executed_at_txt = @executed_at.round(5).to_s if @executed_at < 1
 

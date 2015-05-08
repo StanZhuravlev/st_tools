@@ -6,7 +6,7 @@ require 'ruby-progressbar'
 require 'yaml'
 
 module StTools
-  require 'st_tools/common'
+  require "st_tools/common"
   require 'st_tools/system'
   require 'st_tools/human'
   require 'st_tools/fias'

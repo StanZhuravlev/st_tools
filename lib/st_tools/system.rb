@@ -33,8 +33,9 @@ module StTools
       lines.each do |one|
         res = one unless one.match(/grep/)
       end
-      res = res.split(' ').last
-      File.basename(res)
+      res = res.split(/\d{1,2}\:\d{1,2}\.\d{0,100}/).last
+      res = File.basename(res)
+      res.split(' ').first
     end
 
   end
