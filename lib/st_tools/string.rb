@@ -169,12 +169,10 @@ module StTools
     #   StTools::String.caps("саНКТ-петеРБург")    #=> "Санкт-Петербург"
     def self.caps(text)
       return nil if text.nil?
-      str = self.downcase(text).split(/[\-\s]/).map { |x| self.upcase(x[0]) + x[1,x.length] }
-      str = str.join(' ')
-      for i in 0..str.length
-        str[i] = '-' if (text.to_s[i,1] == '-')
+      str = self.downcase(text)
+      str.gsub!(/(^[а-яa-z]|[а-яa-z\s]-[а-яa-z]|[\.\s\_][а-яa-z])/) do |part|
+        part.gsub(/.\b$/) { |x| self.upcase(x) }
       end
-
       return str
     rescue
       return text
