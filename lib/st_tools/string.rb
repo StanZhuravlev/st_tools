@@ -181,20 +181,27 @@ module StTools
     # Метод конвертирует строку в тип boolean
     #
     # @param [String] text исходная строка, содержащая 'true/false', 'on/off', '1/0'
+    # @param [Boolean] default значение по умолчанию для строк, имеющих значение nil
     # @return [Boolean] true или false
     # @example Примеры использования
-    #   StTools::String.to_bool("True")    #=> true
-    #   StTools::String.to_bool("trUE")    #=> true
-    #   StTools::String.to_bool("on")      #=> true
-    #   StTools::String.to_bool("1")       #=> true
-    #   StTools::String.to_bool("Да")      #=> true
-    #   StTools::String.to_bool("Yes")     #=> true
-    #   StTools::String.to_bool("false")   #=> false
-    #   StTools::String.to_bool("fALse")   #=> false
-    #   StTools::String.to_bool("oFF")     #=> false
-    #   StTools::String.to_bool("0")       #=> false
-    def self.to_bool(text)
-      return false if text.nil?
+    #   StTools::String.to_bool("True")      #=> true
+    #   StTools::String.to_bool("trUE")      #=> true
+    #   StTools::String.to_bool("on")        #=> true
+    #   StTools::String.to_bool("1")         #=> true
+    #   StTools::String.to_bool("Да")        #=> true
+    #   StTools::String.to_bool("Yes")       #=> true
+    #   StTools::String.to_bool("false")     #=> false
+    #   StTools::String.to_bool("fALse")     #=> false
+    #   StTools::String.to_bool("oFF")       #=> false
+    #   StTools::String.to_bool("0")         #=> false
+    #   StTools::String.to_bool(nil, true)   #=> true
+    #   StTools::String.to_bool(nil, false)  #=> false
+    #
+    #   params = { opt1: true }
+    #   StTools::String.to_bool(params[:opt1], false)  #=> true
+    #   StTools::String.to_bool(params[:opt2], true)   #=> true
+    def self.to_bool(text, default = false)
+      return default if text.nil?
       return true if ['true', 'on', '1', 'да', 'yes'].include?(self.downcase(text.to_s))
       false
     end

@@ -96,4 +96,15 @@ describe 'Проверка методов StTools::String.*' do
     expect(test).to eq(false)
   end
 
+  it 'to_bool(nil, true)' do
+    test = ::StTools::String.to_bool(nil, true)
+    expect(test).to eq(true)
+  end
+
+  it 'to_bool(nil, true)' do
+    test = ::StTools::String.to_bool(nil, false)
+    expect(test).to eq(false)
+  end
+
+
 end

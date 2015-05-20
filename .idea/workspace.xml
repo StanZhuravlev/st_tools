@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b078ee99-6eb5-4c77-9c3c-8c2c5500046c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/string_caps_lib_spec.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CHANGELOG.md" afterPath="$PROJECT_DIR$/CHANGELOG.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/st_tools.iml" afterPath="$PROJECT_DIR$/.idea/st_tools.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/st_tools/string.rb" afterPath="$PROJECT_DIR$/lib/st_tools/string.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/string_lib_spec.rb" afterPath="$PROJECT_DIR$/test/string_lib_spec.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/st_tools/version.rb" afterPath="$PROJECT_DIR$/lib/st_tools/version.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -22,7 +22,7 @@
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/st_tools@IRB_console__st_tools.coverage" NAME="IRB console: st_tools Coverage Results" MODIFIED="1432070710985" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="st_tools" />
-    <SUITE FILE_PATH="coverage/st_tools@Run_spec__string_lib_spec___st_tools.coverage" NAME="Run spec 'string_lib_spec': st_tools Coverage Results" MODIFIED="1430598980106" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="st_tools" />
+    <SUITE FILE_PATH="coverage/st_tools@Run_spec__string_lib_spec___st_tools.coverage" NAME="Run spec 'string_lib_spec': st_tools Coverage Results" MODIFIED="1432148851619" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="st_tools" />
     <SUITE FILE_PATH="coverage/st_tools@Run_spec__usage_lib_spec___st_tools.coverage" NAME="Run spec 'usage_lib_spec': st_tools Coverage Results" MODIFIED="1430081167779" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="st_tools" />
     <SUITE FILE_PATH="coverage/st_tools@Run_spec__progress_bar_lib_spec___st_tools.coverage" NAME="Run spec 'progress_bar_lib_spec': st_tools Coverage Results" MODIFIED="1430487126113" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="st_tools" />
     <SUITE FILE_PATH="coverage/st_tools@__StTool__Fias____uuid___st_tools.coverage" NAME="Проверка методов StTool::Fias.* .uuid?: st_tools Coverage Results" MODIFIED="1430081814452" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="st_tools" />
@@ -60,10 +60,13 @@
       <file leaf-file-name="CHANGELOG.md" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CHANGELOG.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="2" column="20" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
+            <state vertical-scroll-proportion="-0.0">
+              <caret line="0" column="18" selection-start-line="0" selection-start-column="18" selection-end-line="0" selection-end-column="18" />
               <folding />
             </state>
+          </provider>
+          <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
+            <state />
           </provider>
         </entry>
       </file>
@@ -81,7 +84,7 @@
         <entry file="file://$PROJECT_DIR$/lib/st_tools/string.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="175" column="0" selection-start-line="175" selection-start-column="0" selection-end-line="175" selection-end-column="0" />
+              <caret line="199" column="1" selection-start-line="199" selection-start-column="1" selection-end-line="201" selection-end-column="63" />
               <folding />
             </state>
           </provider>
@@ -101,7 +104,7 @@
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.62593514">
-              <caret line="169" column="31" selection-start-line="169" selection-start-column="31" selection-end-line="169" selection-end-column="31" />
+              <caret line="199" column="3" selection-start-line="199" selection-start-column="3" selection-end-line="199" selection-end-column="3" />
               <folding />
             </state>
           </provider>
@@ -121,7 +124,7 @@
         <entry file="file://$PROJECT_DIR$/test/string_lib_spec.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="15" column="20" selection-start-line="0" selection-start-column="0" selection-end-line="98" selection-end-column="3" />
+              <caret line="102" column="0" selection-start-line="102" selection-start-column="0" selection-end-line="102" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -186,7 +189,6 @@
         <option value="$PROJECT_DIR$/bin/setup" />
         <option value="$PROJECT_DIR$/lib/modules/fias.rb" />
         <option value="$PROJECT_DIR$/lib/modules/human.rb" />
-        <option value="$PROJECT_DIR$/test/string_lib_spec.rb" />
         <option value="$PROJECT_DIR$/test/usage_lib_spec.rb" />
         <option value="$PROJECT_DIR$/lib/st_tools/usage.rb" />
         <option value="$PROJECT_DIR$/test/system_lib_spec.rb" />
@@ -208,10 +210,11 @@
         <option value="$PROJECT_DIR$/st_tools.gemspec" />
         <option value="$PROJECT_DIR$/lib/st_tools.rb" />
         <option value="$PROJECT_DIR$/lib/st_tools/system.rb" />
-        <option value="$PROJECT_DIR$/lib/st_tools/version.rb" />
-        <option value="$PROJECT_DIR$/lib/st_tools/string.rb" />
-        <option value="$PROJECT_DIR$/CHANGELOG.md" />
         <option value="$PROJECT_DIR$/test/string_caps_lib_spec.rb" />
+        <option value="$PROJECT_DIR$/lib/st_tools/version.rb" />
+        <option value="$PROJECT_DIR$/CHANGELOG.md" />
+        <option value="$PROJECT_DIR$/test/string_lib_spec.rb" />
+        <option value="$PROJECT_DIR$/lib/st_tools/string.rb" />
         <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
@@ -413,7 +416,7 @@
     <property name="restartRequiresConfirmation" value="false" />
     <property name="FullScreen" value="false" />
   </component>
-  <component name="RunManager" selected="IRB console.IRB console: st_tools">
+  <component name="RunManager" selected="RSpec.Run spec 'string_lib_spec': st_tools">
     <configuration default="false" name="Run spec 'progress_bar_lib_spec': st_tools" type="RSpecRunConfigurationType" factoryName="RSpec" temporary="true">
       <predefined_log_file id="RUBY_RSPEC" enabled="true" />
       <module name="st_tools" />
@@ -699,9 +702,10 @@
       <item index="4" class="java.lang.String" itemvalue="RSpec.Run spec 'string_caps_lib_spec': st_tools" />
     </list>
     <recent_temporary>
-      <list size="2">
-        <item index="0" class="java.lang.String" itemvalue="IRB console.IRB console: st_tools" />
-        <item index="1" class="java.lang.String" itemvalue="RSpec.Run spec 'string_caps_lib_spec': st_tools" />
+      <list size="3">
+        <item index="0" class="java.lang.String" itemvalue="RSpec.Run spec 'string_lib_spec': st_tools" />
+        <item index="1" class="java.lang.String" itemvalue="IRB console.IRB console: st_tools" />
+        <item index="2" class="java.lang.String" itemvalue="RSpec.Run spec 'string_caps_lib_spec': st_tools" />
       </list>
     </recent_temporary>
   </component>
@@ -817,7 +821,13 @@
       <option name="project" value="LOCAL" />
       <updated>1432071066015</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Bugs fixed (version 0.3.6)">
+      <created>1432071094103</created>
+      <option name="number" value="00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1432071094103</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1225,30 +1235,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/st_tools/string.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="175" column="0" selection-start-line="175" selection-start-column="0" selection-end-line="175" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/st_tools/version.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="1" column="18" selection-start-line="1" selection-start-column="18" selection-end-line="1" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CHANGELOG.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="2" column="20" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/system_lib_spec.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1281,14 +1267,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/string_lib_spec.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="15" column="20" selection-start-line="0" selection-start-column="0" selection-end-line="98" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/string_caps_lib_spec.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1297,10 +1275,45 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/lib/st_tools/version.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="1" column="18" selection-start-line="1" selection-start-column="18" selection-end-line="1" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CHANGELOG.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.0">
+          <caret line="0" column="18" selection-start-line="0" selection-start-column="18" selection-end-line="0" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/string_lib_spec.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="102" column="0" selection-start-line="102" selection-start-column="0" selection-end-line="102" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/st_tools/string.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="199" column="1" selection-start-line="199" selection-start-column="1" selection-end-line="201" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.62593514">
-          <caret line="169" column="31" selection-start-line="169" selection-start-column="31" selection-end-line="169" selection-end-column="31" />
+          <caret line="199" column="3" selection-start-line="199" selection-start-column="3" selection-end-line="199" selection-end-column="3" />
           <folding />
         </state>
       </provider>
