@@ -106,5 +106,38 @@ describe 'Проверка методов StTools::String.*' do
     expect(test).to eq(false)
   end
 
+  it 'pretty_list(nil)' do
+    test = ::StTools::String.pretty_list(nil)
+    expect(test).to eq('')
+  end
+
+  it 'pretty_list - ru' do
+    ::StTools::Setup.setup(:ru)
+    test = ::StTools::String.pretty_list(['Паша'])
+    expect(test).to eq('Паша')
+    test = ::StTools::String.pretty_list(['Паша', 'Маша'])
+    expect(test).to eq('Паша и Маша')
+    test = ::StTools::String.pretty_list(['Паша', 'Маша', 'Саша'])
+    expect(test).to eq('Паша, Маша и Саша')
+    test = ::StTools::String.pretty_list(['Паша', 'Маша', 'Саша'], union: :or)
+    expect(test).to eq('Паша, Маша или Саша')
+    test = ::StTools::String.pretty_list(['Паша', 'Маша', 'Саша'], union: :or, pretag: '<em>', afttag: '</em>')
+    expect(test).to eq('<em>Паша</em>, <em>Маша</em> или <em>Саша</em>')
+  end
+
+  it 'pretty_list - en' do
+    ::StTools::Setup.setup(:en)
+    test = ::StTools::String.pretty_list(['Паша'])
+    expect(test).to eq('Паша')
+    test = ::StTools::String.pretty_list(['Паша', 'Маша'])
+    expect(test).to eq('Паша and Маша')
+    test = ::StTools::String.pretty_list(['Паша', 'Маша', 'Саша'])
+    expect(test).to eq('Паша, Маша and Саша')
+    test = ::StTools::String.pretty_list(['Паша', 'Маша', 'Саша'], union: :or)
+    expect(test).to eq('Паша, Маша or Саша')
+    test = ::StTools::String.pretty_list(['Паша', 'Маша', 'Саша'], union: :or, pretag: '<em>', afttag: '</em>')
+    expect(test).to eq('<em>Паша</em>, <em>Маша</em> or <em>Саша</em>')
+  end
+
 
 end

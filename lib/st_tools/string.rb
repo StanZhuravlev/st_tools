@@ -206,5 +206,26 @@ module StTools
       false
     end
 
+    def self.pretty_list(items, separator: ',', union: :and, pretag: '', afttag: '')
+      return '' if items.nil? || items.empty?
+      return "#{pretag}#{items.first}#{afttag}" if items.count == 1
+      out = Array.new
+      last = items.last
+      arr = items[0,items.count-1]
+      arr.each do |one|
+        out << "#{pretag}#{one}#{afttag}"
+        out << separator + ' '
+      end
+      out.pop
+      case union
+        when :and
+          out << " #{I18n.t('string.pretty_list.and')} "
+        else
+          out << " #{I18n.t('string.pretty_list.or')} "
+      end
+      out << "#{pretag}#{last}#{afttag}"
+      out.join
+    end
+
   end
 end

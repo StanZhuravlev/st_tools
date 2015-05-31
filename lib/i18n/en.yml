@@ -70,3 +70,8 @@ en:
         one: second
         two: seconds
         other: seconds
+
+  string:
+    pretty_list:
+      and: and
+      or: or

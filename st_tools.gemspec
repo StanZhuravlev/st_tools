@@ -16,7 +16,7 @@ Gem::Specification.new do |spec|
 управление прогресс-баром CLI-приложений.}
   spec.homepage      = "https://github.com/StanZhuravlev/st_tools"
   spec.license       = "MIT"
-  spec.required_ruby_version = '~> 2.0'
+  spec.required_ruby_version = '~> 2.2.1'
 
   # Prevent pushing this gem to RubyGems.org by setting 'allowed_push_host', or
   # delete this section to allow pushing this gem to any host.

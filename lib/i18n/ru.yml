@@ -47,3 +47,8 @@ ru:
         one: секунда
         two: секунды
         other: секунд
+
+  string:
+    pretty_list:
+      and: и
+      or: или
