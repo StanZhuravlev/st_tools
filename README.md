@@ -221,6 +221,22 @@ StTools::String.to_range('54, 3-6, 5, 1', uniq: true)                     # => [
 StTools::String.to_range('54, 3-6, 5, 1', uniq: true, sort: true)         # => [1, 3, 5, 6, 54]
 ```
 
+Следующий метод `pretty_list` позволяет сделать human-подобное оформление списков-перечислений.
+
+```ruby
+StTools::Setup.setup(:ru)
+'Мы работаем ' + StTools::String.pretty_list([4,5,6]) + ' мая'
+    # => "Мы работаем 4, 5 и 6 мая"
+'Доехать можно на трамваях ' + StTools::String.pretty_list([67, 89], union: :or) + ' маршрутов'
+    # => "Доехать можно на трамвае 67 или 89 маршрутов"
+'Скидка составит ' + StTools::String.pretty_list([100, 200], union: :or, pretag: '<em>', afttag: '</em>') + ' руб.'
+    # => "Скидка составит <em>100</em> или <em>200</em> руб."
+
+StTools::Setup.setup(:en)
+'Discount is ' + StTools::String.pretty_list([100, 200], union: :or, pretag: '<em>$', afttag: '</em>')
+    # => "Discount is <em>$100</em> or <em>$200</em>"
+```
+
 Вы можете подмешать модуль `StTools::Module` в классы String, Integer, Time.
 
 ```ruby
