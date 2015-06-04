@@ -110,7 +110,7 @@ module StTools
     #   StTools::Fias.postalcode?('1234') #=> false
     def self.postalcode?(text)
       return nil if text.nil?
-      if text.to_s.strip.match(/^\d{6}$/)
+      if text.to_s.strip.match(/\A\d{6}\z/)
         return true
       end
       return false

@@ -171,7 +171,7 @@ module StTools
       return nil if text.nil?
       str = self.downcase(text)
       str.gsub!(/(^[а-яa-z]|[а-яa-z\s]-[а-яa-z]|[\.\s\_][а-яa-z])/) do |part|
-        part.gsub(/.\b$/) { |x| self.upcase(x) }
+        part.gsub(/.\b\z/) { |x| self.upcase(x) }
       end
       return str
     rescue
@@ -206,6 +206,22 @@ module StTools
       false
     end
 
+    # Метод преобразует список Array в строку перечисление вида "это, это и это". Метод позволяет
+    # делать перечсиелние на разных языках, использовать частицы 'и' и 'или', а также оформлять
+    # список тегами HTML.
+    #
+    # @param [Array] items массив значений для оформления в виде списка
+    # @param [String] separator знак разделитель, по умолчанию запятая (',')
+    # @param [Sym] union признак частицы, если указать :and, то будет использована частица 'и', либо 'или' в других случаях
+    # @param [String] pretag открывающий тег HTML для обрамления элементов списка
+    # @param [String] afttag закрывающий тег HTML для обрамления элементов списка
+    #
+    # @return [String] конвертированная строка
+    # @example Примеры использования
+    #   StTools::Setup.setup(:ru)
+    #   StTools::String.pretty_list([1,2])                      #=> "1 и 2"
+    #   StTools::String.pretty_list([1,2,4])                    #=> "1, 2 и 4"
+    #   StTools::String.pretty_list([1,2,3,4], union: :or)      #=> "1, 2, 3 или 4"
     def self.pretty_list(items, separator: ',', union: :and, pretag: '', afttag: '')
       return '' if items.nil? || items.empty?
       return "#{pretag}#{items.first}#{afttag}" if items.count == 1
@@ -225,6 +241,29 @@ module StTools
       end
       out << "#{pretag}#{last}#{afttag}"
       out.join
+    end
+
+    # Метод обрезает строку и добавляет в случае обрезания строки многоточие
+    #
+    # @param [Object] text строка для обрезания
+    # @param [Object] length необходимая длина строки С УЧЕТОМ окончания (многоточия)
+    # @param [Object] words если true, то не будет слов "разрезанных" на части. По умолчанию false
+    # @param [Object] endwith завершающее многоточие (по умолчанию '...')
+    # @return [String] сокращенная строка строка
+    # @example Примеры использования
+    #   StTools::String.prune("1234567890", 20)                   #=> "1234567890"
+    #   StTools::String.prune("1234567890", 8)                    #=> "12345..."
+    #   StTools::String.prune("1234567890", 8, endwidth: '---')   #=> "12345---"
+    #   StTools::String.prune("Привет мир!", 12)                  #=> "Привет ми..."
+    #   StTools::String.prune("Привет мир!", 12, words: true)     #=> "Привет..."
+    def self.prune(text, length, words: false, endwith: '...')
+      return '' if text.nil? || text == ''
+      return text if text.length <= length
+      return text[0, length] if length <= endwith.length
+
+      out = text.strip[0,length - endwith.length]
+      out.gsub!(/\s.+\z/, '') if words
+      out.strip + endwith
     end
 
   end

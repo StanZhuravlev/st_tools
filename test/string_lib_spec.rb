@@ -139,5 +139,19 @@ describe 'Проверка методов StTools::String.*' do
     expect(test).to eq('<em>Паша</em>, <em>Маша</em> or <em>Саша</em>')
   end
 
+  it 'prune' do
+    test = ::StTools::String.prune('1234567890', 20)
+    expect(test).to eq('1234567890')
+    test = ::StTools::String.prune('1234567890', 8)
+    expect(test).to eq('12345...')
+    test = ::StTools::String.prune('1234567890', 8, words: true)
+    expect(test).to eq('12345...')
+    test = ::StTools::String.prune('1234567890', 8, words: true, endwith: '---')
+    expect(test).to eq('12345---')
+    test = ::StTools::String.prune('Привет мир и природа', 12)
+    expect(test).to eq('Привет ми...')
+    test = ::StTools::String.prune('Привет мир и природа', 12, words: true)
+    expect(test).to eq('Привет...')
+  end
 
 end

@@ -90,6 +90,19 @@ module StTools
         ::StTools::String.caps(self)
       end
 
+      # Метод обрезает строку и добавляет в случае обрезнаия многоточие
+      #
+      # @return [String] сокращенная строка строка
+      # @example Обрезание строки
+      #   "1234567890".prune(20)                  #=> "1234567890"
+      #   "1234567890".prune(8)                   #=> "12345..."
+      #   "1234567890".prune(8, endwidth: '---')  #=> "12345---"
+      #   "Привет мир!".prune(12)                 #=> "Привет ми..."
+      #   "Привет мир!".prune(12, words: true)    #=> "Привет..."
+      def prune(length, words: false, endwith: '...')
+        ::StTools::String.prune(self, length, words, endwith)
+      end
+
       # Метод переводит строку в значение boolean (true или false). True - если строка имеет одно из трех значений:
       # ['true', 'on', '1']
       #
