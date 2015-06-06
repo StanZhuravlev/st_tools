@@ -154,4 +154,19 @@ describe 'Проверка методов StTools::String.*' do
     expect(test).to eq('Привет...')
   end
 
+  it 'to_float' do
+    expect(::StTools::String.to_float('123.45')).to eq(123.45)
+    expect(::StTools::String.to_float('123.474565647335', round: 2)).to eq(123.47)
+    expect(::StTools::String.to_float('123,474565647335', round: 2)).to eq(123.47)
+    expect(::StTools::String.to_float('   123,474565647335', round: 2)).to eq(123.47)
+    expect(::StTools::String.to_float('   10 123,474565647335', round: 2)).to eq(10123.47)
+    expect(::StTools::String.to_float(' -  10 123,474565647335', round: 2)).to eq(-10123.47)
+    expect((::StTools::String.to_float(nil, round: 2) rescue 'fail')).to eq('fail')
+    expect((::StTools::String.to_float(nil, round: 2, stop: false) rescue 'fail')).to eq(0)
+    expect((::StTools::String.to_float('no_digits', round: 2) rescue 'fail')).to eq('fail')
+    expect((::StTools::String.to_float('no_digits', round: 2, stop: false) rescue 'fail')).to eq(0)
+    expect(::StTools::String.to_float(145.5667, round: 2)).to eq(145.57)
+    expect(::StTools::String.to_float(23, round: 2)).to eq(23)
+  end
+
 end

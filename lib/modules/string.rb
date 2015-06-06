@@ -103,6 +103,26 @@ module StTools
         ::StTools::String.prune(self, length, words, endwith)
       end
 
+      # Метод преобразует строковое выражение в число с плавающей запятой. При этом метод корректно преобразует
+      # числа вида "12.34" и "12,34", то есть с точкой и запятой (но будет некорректный результат в случае
+      # американских чисел, где запятая - разделитель тысяч, а не дробная часть).
+      #
+      # @param [Integer] round число цифр после запятой при округлении. По умолчанию - 6
+      # @param [Object] stop если true, то при ошибке будет выброшен "Exception", иначе при ошибках будет возвращаться "0". По умолчанию - true.
+      # @return [Float] число с плавающей запятой
+      # @example Примеры использования
+      #   '123.45678'.to_float                                 #=> 123.45678
+      #   '123.474565'.to_float(round: 2)                      #=> 123.47
+      #   '123,474565'.to_float(round: 2)                      #=> 123.47
+      #   '   123,47456564'.to_float(round: 2)                 #=> 123.47
+      #   '   10 123,47456'.to_float(round: 2)                 #=> 10123.47
+      #   ' -  10 123,474565'.to_float(round: 2)               #=> -10123.47
+      #   nil.to_float(round: 2) rescue 'fail'                 #=> "fail"
+      #   nil.to_float(round: 2, stop: false) rescue 'fail'    #=> 0
+      def to_float(round: 6, stop: true)
+        ::StTools::String.to_float(self, round, stop)
+      end
+
       # Метод переводит строку в значение boolean (true или false). True - если строка имеет одно из трех значений:
       # ['true', 'on', '1']
       #

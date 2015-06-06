@@ -262,8 +262,51 @@ module StTools
       return text[0, length] if length <= endwith.length
 
       out = text.strip[0,length - endwith.length]
-      out.gsub!(/\s.+\z/, '') if words
+      out.gsub!(/\s[^\s]+?\z/, '') if words
       out.strip + endwith
+    end
+
+    # Метод преобразует строковое выражение в число с плавающей запятой. При этом метод корректно преобразует
+    # числа вида "12.34" и "12,34", то есть с точкой и запятой (но будет некорректный результат в случае
+    # американских чисел, где запятая - разделитель тысяч, а не дробная часть).
+    #
+    # @param [String, Float, Integer] text строка или число, которое нужно преобразовать в Float
+    # @param [Integer] round число цифр после запятой при округлении. По умолчанию - 6
+    # @param [Object] stop если true, то при ошибке будет выброшен "Exception", иначе при ошибках будет возвращаться "0". По умолчанию - true.
+    # @return [Float] число с плавающей запятой
+    # @example Примеры использования
+    #   StTools::String.to_float('123.45678')                                 #=> 123.45678
+    #   StTools::String.to_float('123.474565', round: 2)                      #=> 123.47
+    #   StTools::String.to_float('123,474565', round: 2)                      #=> 123.47
+    #   StTools::String.to_float('   123,47456564', round: 2)                 #=> 123.47
+    #   StTools::String.to_float('   10 123,47456', round: 2)                 #=> 10123.47
+    #   StTools::String.to_float(' -  10 123,474565', round: 2)               #=> -10123.47
+    #   StTools::String.to_float(nil, round: 2) rescue 'fail')                #=> "fail"
+    #   StTools::String.to_float(nil, round: 2, stop: false) rescue 'fail')   #=> 0
+    #   StTools::String.to_float(145.5667, round: 2)                          #=> 145.57
+    #   StTools::String.to_float(23, round: 2)                                #=> 23
+    def self.to_float(text, round: 6, stop: true)
+      # http://stackoverflow.com/questions/1034418/determine-if-a-string-is-a-valid-float-value
+      if text.nil?
+        stop ? (raise TypeError, "can't convert nil into Float") : (return 0)
+      end
+
+      if text.is_a?(::Float) || text.is_a?(::Integer)
+        return text.to_f.round(round)
+      end
+
+      if text.is_a?(::String)
+        str = text.strip.gsub(/\,/, '.').gsub(/\s/, '')
+        if str.match(/\A\s*[+-]?((\d+_?)*\d+(\.(\d+_?)*\d+)?|\.(\d+_?)*\d+)(\s*|([eE][+-]?(\d+_?)*\d+)\s*)\z/)
+          begin
+            return str.to_f.round(round)
+          rescue Exception => e
+            stop ? (raise ArgumentError, "invalid value for Float(): #{str.inspect}") : (return 0)
+          end
+        end
+      end
+
+      stop ? (raise ArgumentError, "invalid value for Float(): #{text.inspect}") : (return 0)
     end
 
   end
