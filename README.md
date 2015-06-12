@@ -86,7 +86,7 @@ StTools::Human.human_ago(Time.now - 15, true)                   # => 15 seconds 
 
 ```ruby
 StTools::Setup.setup(:ru)
-.seconds_ago(DateTime.new(2014,12,31), true)        # => 4 months 21 days ago
+StTools::Human.seconds_ago(DateTime.new(2014,12,31), true)        # => 4 months 21 days ago
 StTools::Human.seconds_ago(DateTime.new(2013,08,01), false)       # => 1 year 8 months
 StTools::Human.seconds_ago(Time.now - 15, true)                   # => 15 seconds ago
 ```
