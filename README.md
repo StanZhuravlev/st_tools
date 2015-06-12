@@ -37,42 +37,42 @@ gem 'st_tools'
 Вы вызываете в любой момент StTools::Human.memory и узнаете текущий размер памяти, занимаемый приложением (процессом)
 
 ```ruby
-StTools.Human.memory               # => 14 кбайт
-StTools.Human.memory               # => 45,3 Мбайт
-StTools.Human.memory               # => 2,6 Гбайт
+StTools::Human.memory               # => 14 кбайт
+StTools::Human.memory               # => 45,3 Мбайт
+StTools::Human.memory               # => 2,6 Гбайт
 ```
 
 Вы вызываете StTools::Human.bytes и перевести любое значение в человеко-удобный вид. Метод можно использовать для показа размера файла
 
 ```ruby
-StTools.Human.bytes(345)           # => 345 байт
-StTools.Human.bytes(14653)         # => 14,5 кбайт
-StTools.Human.bytes(23653763)      # => 23,4 Мбайт
+StTools::Human.bytes(345)           # => 345 байт
+StTools::Human.bytes(14653)         # => 14,5 кбайт
+StTools::Human.bytes(23653763)      # => 23,4 Мбайт
 ```
 
 Вы вызываете StTools::Human.number для перевода любого значения в человеко-удобный вид.
 Метод можно использовать для показа, например, суммы денег
 
 ```ruby
-StTools.Human.number(345)           # => 345
-StTools.Human.number(14653)         # => 14,6 тыс.
-StTools.Human.number(23653763)      # => 23,7 млн.
+StTools::Human.number(345)           # => 345
+StTools::Human.number(14653)         # => 14,6 тыс.
+StTools::Human.number(23653763)      # => 23,7 млн.
 ```
 
 Вы имеете возможность узнать разницу между текущим временем и временем какого-либо события.
 
 ```ruby
 StTools::Setup.setup(:ru)
-StTools.Human.ago_in_words(DateTime.new(2014,12,31), true)        # => 4 месяца 21 день назад
-StTools.Human.ago_in_words(DateTime.new(2013,08,01), false)       # => 1 год 8 месяца
-StTools.Human.ago_in_words(Time.now - 15, true)                   # => 15 секунд назад
+StTools::Human.human_ago(DateTime.new(2014,12,31), true)        # => 4 месяца 21 день назад
+StTools::Human.human_ago(DateTime.new(2013,08,01), false)       # => 1 год 8 месяца
+StTools::Human.human_ago(Time.now - 15, true)                   # => 15 секунд назад
 ```
 
 ```ruby
 StTools::Setup.setup(:en)
-StTools.Human.human_ago(DateTime.new(2014,12,31), true)        # => 4 months 21 days ago
-StTools.Human.human_ago(DateTime.new(2013,08,01), false)       # => 1 year 8 months
-StTools.Human.human_ago(Time.now - 15, true)                   # => 15 seconds ago
+StTools::Human.human_ago(DateTime.new(2014,12,31), true)        # => 4 months 21 days ago
+StTools::Human.human_ago(DateTime.new(2013,08,01), false)       # => 1 year 8 months
+StTools::Human.human_ago(Time.now - 15, true)                   # => 15 seconds ago
 ```
 
 Устанавливая флаг ```ago=true```, метод добавит слово "назад" или "ago" в конце фразы.
@@ -87,8 +87,8 @@ StTools.Human.human_ago(Time.now - 15, true)                   # => 15 seconds a
 ```ruby
 StTools::Setup.setup(:ru)
 .seconds_ago(DateTime.new(2014,12,31), true)        # => 4 months 21 days ago
-StTools.Human.seconds_ago(DateTime.new(2013,08,01), false)       # => 1 year 8 months
-StTools.Human.seconds_ago(Time.now - 15, true)                   # => 15 seconds ago
+StTools::Human.seconds_ago(DateTime.new(2013,08,01), false)       # => 1 year 8 months
+StTools::Human.seconds_ago(Time.now - 15, true)                   # => 15 seconds ago
 ```
 
 
@@ -96,22 +96,22 @@ StTools.Human.seconds_ago(Time.now - 15, true)                   # => 15 seconds
 
 ```ruby
 StTools::Setup.setup(:ru)
-StTools.Human.format_time(Time.now, :full, :full)              # => 28 апреля 2015 г. 10:45:23
-StTools.Human.format_time(Time.now, :date, :full)              # => 28 апреля 2015 г.
-StTools.Human.format_time(Time.now, :time, :full)              # => 10:45:23
-StTools.Human.format_time(Time.now, :full, :short)             # => 28/04/2015 10:45
-StTools.Human.format_time(Time.now, :date, :short)             # => 28/04/2015
-StTools.Human.format_time(Time.now, :time, :short)             # => 10:45
+StTools::Human.format_time(Time.now, :full, :full)              # => 28 апреля 2015 г. 10:45:23
+StTools::Human.format_time(Time.now, :date, :full)              # => 28 апреля 2015 г.
+StTools::Human.format_time(Time.now, :time, :full)              # => 10:45:23
+StTools::Human.format_time(Time.now, :full, :short)             # => 28/04/2015 10:45
+StTools::Human.format_time(Time.now, :date, :short)             # => 28/04/2015
+StTools::Human.format_time(Time.now, :time, :short)             # => 10:45
 ```
 
 ```ruby
 StTools::Setup.setup(:en)
-StTools.Human.format_time(Time.now, :full, :full)              # => April 28, 2015 09:45:23 am
-StTools.Human.format_time(Time.now, :date, :full)              # => April 28, 2015
-StTools.Human.format_time(Time.now, :time, :full)              # => 09:45:23 am
-StTools.Human.format_time(Time.now, :full, :short)             # => 04/28/2015 09:45 am
-StTools.Human.format_time(Time.now, :date, :short)             # => 04/28/2015
-StTools.Human.format_time(Time.now, :time, :short)             # => 09:45 am
+StTools::Human.format_time(Time.now, :full, :full)              # => April 28, 2015 09:45:23 am
+StTools::Human.format_time(Time.now, :date, :full)              # => April 28, 2015
+StTools::Human.format_time(Time.now, :time, :full)              # => 09:45:23 am
+StTools::Human.format_time(Time.now, :full, :short)             # => 04/28/2015 09:45 am
+StTools::Human.format_time(Time.now, :date, :short)             # => 04/28/2015
+StTools::Human.format_time(Time.now, :time, :short)             # => 09:45 am
 ```
 
 Вы можете подмешать модуль `StTools::Module` в классы String, Integer, Time.
@@ -123,7 +123,7 @@ class String
    include StTools::Module::String
 end
 
-(Time.now - 15).human_ago                         # => 15 секунд назад
+(Time.now - 15)::Human_ago                         # => 15 секунд назад
 Time.now.format_date                              # => 28 апреля 2015 г.
 Time.now.format_date(:short)                      # => 28/04/2015
 ```
