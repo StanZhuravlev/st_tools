@@ -116,6 +116,43 @@ module StTools
       return false
     end
 
+    # Метод расчитывает расстояние в метрах между двумя географическими точками
+    #
+    # @param [Float] from_lat - широта первой точки
+    # @param [Float] from_long - долгота первой точки
+    # @param [Float] to_lat - широта второй точки
+    # @param [Float] to_long - долгота второй точки
+    # @return [Float] расстояние в метрах между двумя точками
+    # @example Примеры использования
+    #   # Москва - Санкт-Петербург
+    #   StTools::Fias.distance(55.75583, 37.61778, 59.95000, 30.31667)    #=> 634 988 м (635 км)
+    #   # Москва - Киев
+    #   StTools::Fias.distance(55.75583, 37.61778, 50.450500, 30.523000)  #=> 755 744 м (756 км)
+    #   # Москва - Пермь
+    #   StTools::Fias.distance(55.75583, 37.61778, 58.01389, 56.24889)    #=> 1 155 328 м (1 155 км)
+    #   # Москва - Сан-Франциско
+    #   StTools::Fias.distance(55.75583, 37.61778, 37.76667, -122.43333)  #=> 9 445 325 м (9 445 км)
+    def self.distance(from_lat, from_long, to_lat, to_long)
+      # coord - координата километровой отметки мкад
+      rad_per_deg = Math::PI/180  # PI / 180
+      rkm = 6371                  # Earth radius in kilometers
+      rm = rkm * 1000             # Radius in meters
+
+      dlat_rad = (to_lat.to_f - from_lat.to_f) * rad_per_deg  # Delta, converted to rad
+      dlon_rad = (to_long.to_f - from_long.to_f) * rad_per_deg
+
+      lat1_rad = from_lat.to_f * rad_per_deg
+      lon1_rad = from_long.to_f * rad_per_deg
+
+      lat2_rad = to_lat * rad_per_deg
+      lon2_rad = to_long * rad_per_deg
+
+      a = Math.sin(dlat_rad/2)**2 + Math.cos(lat1_rad) * Math.cos(lat2_rad) * Math.sin(dlon_rad/2)**2
+      c = 2 * Math::atan2(Math::sqrt(a), Math::sqrt(1-a))
+
+      (rm * c).to_i # Delta in meters
+    end
+
 
     private
 

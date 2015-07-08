@@ -73,7 +73,7 @@ module StTools
     #   StTools::String.normalize("  Ёлки-     ПАЛКИ")   #=> "елки- палки"
     def self.normalize(text)
       return nil if text.nil?
-      return self.downcase(self.delat(text)).strip.gsub(/\s{1,100}/, ' ')
+      return self.downcase(self.delat(text)).strip.gsub(/[\s\t\u00A0]{1,100}/, ' ')
     end
 
     # Метод позволяет показывать клиенту строку в неполном объеме, с закрытием части символов в строке звездочкой.

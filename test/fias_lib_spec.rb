@@ -109,4 +109,34 @@ describe 'Проверка методов StTool::Fias.*' do
     test = ::StTools::Fias.federal?('0c5b2444-70a0-4932-980c-b4dc053f02b5')
     expect(test).to eq false
   end
+
+  #--------------------------------------------------------
+  #
+  # Тесты расчета расстояния между точками
+  #
+  #--------------------------------------------------------
+  it 'Москва - Санкт-Петербург' do
+    test = ::StTools::Fias.distance(55.75583, 37.61778, 59.95000, 30.31667)
+    expect(test).to be > 634000
+    expect(test).to be < 635000
+  end
+
+  it 'Москва - Киев' do
+    test = ::StTools::Fias.distance(55.75583, 37.61778, 50.450500, 30.523000)
+    expect(test).to be > 755000
+    expect(test).to be < 757000
+  end
+
+  it 'Москва - Пермь' do
+    test = ::StTools::Fias.distance(55.75583, 37.61778, 58.01389, 56.24889)
+    expect(test).to be > 1150000
+    expect(test).to be < 1160000
+  end
+
+  it 'Москва - Сан-Франциско' do
+    test = ::StTools::Fias.distance(55.75583, 37.61778, 37.76667, -122.43333)
+    expect(test).to be > 9440000
+    expect(test).to be < 9480000
+  end
+
 end
