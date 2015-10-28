@@ -162,8 +162,8 @@ module StTools
 
       self_federal_cities['msk'] = '0c5b2444-70a0-4932-980c-b4dc0d3f02b5' # Москва
       self_federal_cities['spb'] = 'c2deb16a-0330-4f05-821f-1d09c93331e6' # Санкт-Петербург
-      self_federal_cities['svs'] = '63ed1a35-4be6-4564-a1ec-0c51f7383314' # Байконур
-      self_federal_cities['bai'] = '6fdecb78-893a-4e3f-a5ba-aa062459463b' # Севастополь
+      self_federal_cities['bai'] = '63ed1a35-4be6-4564-a1ec-0c51f7383314' # Байконур
+      self_federal_cities['svs'] = '6fdecb78-893a-4e3f-a5ba-aa062459463b' # Севастополь
 
       return self_federal_cities
     end
