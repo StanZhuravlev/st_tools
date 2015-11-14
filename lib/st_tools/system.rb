@@ -5,7 +5,7 @@ module StTools
     #
     # @return [Integer] размер памяти в байтах
     def self.memory
-      return `ps -o rss -p #{Process::pid}`.chomp.split("\n").last.strip.to_i
+      return (`ps -o rss -p #{Process::pid}`.chomp.split("\n").last.strip.to_i * 1024)
     end
 
     # Метод возвращает размер терминала - число строк в терминале или число символов в строке
