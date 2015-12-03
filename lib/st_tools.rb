@@ -10,6 +10,7 @@ module StTools
   require 'st_tools/system'
   require 'st_tools/human'
   require 'st_tools/fias'
+  require 'st_tools/countries'
   require 'st_tools/string'
   require 'st_tools/progress_bar'
 

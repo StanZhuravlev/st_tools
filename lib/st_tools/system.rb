@@ -38,5 +38,8 @@ module StTools
       res.split(' ').first
     end
 
+    # todo: расчет размера папки
+    # todo: свободное место
+
   end
 end

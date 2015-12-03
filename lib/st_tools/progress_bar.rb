@@ -39,6 +39,7 @@ module StTools
     # @return [Object] нет
     def progress=(val)
       return if val > @max
+      return if val == @max
       return if val == @value
       return if val % @step != 0 && (@max - val) >= @step
 
@@ -46,7 +47,7 @@ module StTools
       @pbar.progress = val
       @usage += 1
 
-      if val > @max - 1
+      if val >= @max
         puts_footer
       end
     end

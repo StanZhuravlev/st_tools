@@ -154,6 +154,7 @@ module StTools
     end
 
 
+
     private
 
     # noinspection RubyClassVariableUsageInspection
@@ -167,6 +168,7 @@ module StTools
 
       return self_federal_cities
     end
+
 
   end
 end
