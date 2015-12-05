@@ -52,7 +52,9 @@ module StTools
         code = ::StTools::Countries::AOGUIDS.keys.include?(id.to_sym) ? id.to_sym : :zz
       end
 
-      ::StTools::Countries::COUNTRIES[code].merge(::StTools::Countries::GEO[code])
+      res = ::StTools::Countries::COUNTRIES[code].merge(::StTools::Countries::GEO[code])
+      res[:aoguid] = ::StTools::Countries::AOGUIDS[code]
+      res
     end
 
 

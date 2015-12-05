@@ -39,7 +39,6 @@ module StTools
     # @return [Object] нет
     def progress=(val)
       return if val > @max
-      return if val == @max
       return if val == @value
       return if val % @step != 0 && (@max - val) >= @step
 
@@ -52,6 +51,12 @@ module StTools
       end
     end
 
+    # Метод финализирует значение прогресс-бара
+    #
+    # @return [Object] нет
+    def complete
+      @pbar.progress = @max if @pbar.progress < @max
+    end
 
     private
 

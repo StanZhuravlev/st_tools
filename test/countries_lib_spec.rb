@@ -32,6 +32,7 @@ describe 'Проверка методов StTool::Countries.*' do
   it 'country success by code :ru' do
     test = ::StTools::Countries.country(:ru)
     expect(test[:code]).to eq 'ru'
+    expect(test[:aoguid]).to eq 'ea70abb2-ccc2-46c8-9b15-d42cac1ecd7f'
   end
 
   it 'country success by code ru' do
