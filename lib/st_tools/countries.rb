@@ -18,7 +18,7 @@ module StTools
 
     GEO = {
         zz: {location: [0.0, 0.0], upper: [0.0, 0.0], lower: [0.0, 0.0]},
-        ru: {location: [99.505405, 61.698653], upper: [191.128003, 81.886117], lower: [19.484764, 41.18599]},
+        ru: {location: [99.505405, 61.698653], upper: [-169.128003, 81.886117], lower: [19.484764, 41.18599]},
         ua: {location: [0.0, 0.0], upper: [0.0, 0.0], lower: [0.0, 0.0]},
         kz: {location: [0.0, 0.0], upper: [0.0, 0.0], lower: [0.0, 0.0]},
         by: {location: [0.0, 0.0], upper: [0.0, 0.0], lower: [0.0, 0.0]},

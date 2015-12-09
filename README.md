@@ -59,6 +59,17 @@ StTools::Human.number(14653)         # => 14,6 тыс.
 StTools::Human.number(23653763)      # => 23,7 млн.
 ```
 
+Вы вызываете StTools::Human.pretty_number для красивого отображения числа с пробелами. При этом можно указать
+число цифр после запятой, и автоматически конвертировать точку в звпятую
+
+```ruby
+StTools::Human.pretty_number(345)                       # => 345
+StTools::Human.pretty_number(345, round: 2)             # => 345,00
+StTools::Human.pretty_number(75345, round: 1)           # => 75 345,0
+StTools::Human.pretty_number(nil)                       # => 0
+StTools::Human.pretty_number('1675345.763', round: 1)   # => 1 675 345,7
+```
+
 Вы имеете возможность узнать разницу между текущим временем и временем какого-либо события.
 
 ```ruby

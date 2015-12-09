@@ -75,4 +75,25 @@ describe 'Проверка методов StTools::Human.*' do
     expect(test).to match(/\d{2}\/\d{2}\/\d{4}/)
   end
 
+  it '.pretty_number(12345678)' do
+    test = ::StTools::Human.pretty_number(12345678, round: 2)
+    expect(test).to match('12 345 678,00')
+  end
+
+  it '.pretty_number(12345678)' do
+    test = ::StTools::Human.pretty_number(12345678, round: 0)
+    expect(test).to match('12 345 678')
+  end
+
+  it '.pretty_number(45678.6743)' do
+    test = ::StTools::Human.pretty_number('45678.6743', round: 3)
+    expect(test).to match('45 678,674')
+  end
+
+  it '.pretty_number(nil)' do
+    test = ::StTools::Human.pretty_number(nil, round: 0)
+    expect(test).to match('0')
+  end
+
+
 end
