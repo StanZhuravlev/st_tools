@@ -46,14 +46,18 @@ describe 'Проверка методов StTool::Fias.*' do
 
   it 'sevastopol_aoguid' do
     test = ::StTools::Fias.sevastopol_aoguid
-    expect(test).to eq '63ed1a35-4be6-4564-a1ec-0c51f7383314'
+    expect(test).to eq '6fdecb78-893a-4e3f-a5ba-aa062459463b'
   end
 
   it 'baikonur_aoguid' do
     test = ::StTools::Fias.baikonur_aoguid
-    expect(test).to eq '6fdecb78-893a-4e3f-a5ba-aa062459463b'
+    expect(test).to eq '63ed1a35-4be6-4564-a1ec-0c51f7383314'
   end
 
+  it 'other_aoguid' do
+    test = ::StTools::Fias.other_aoguid
+    expect(test).to eq 'a074418e-41da-49dd-ad44-9f7909e91675'
+  end
 
   #-----------------------------------------------------
   #
@@ -71,12 +75,12 @@ describe 'Проверка методов StTool::Fias.*' do
   end
 
   it 'sevastopol? success' do
-    test = ::StTools::Fias.sevastopol?('63ed1a35-4be6-4564-a1ec-0c51f7383314')
+    test = ::StTools::Fias.sevastopol?('6fdecb78-893a-4e3f-a5ba-aa062459463b')
     expect(test).to eq true
   end
 
   it 'baikonur? success' do
-    test = ::StTools::Fias.baikonur?('6fdecb78-893a-4e3f-a5ba-aa062459463b')
+    test = ::StTools::Fias.baikonur?('63ed1a35-4be6-4564-a1ec-0c51f7383314')
     expect(test).to eq true
   end
 
@@ -91,12 +95,12 @@ describe 'Проверка методов StTool::Fias.*' do
   end
 
   it 'sevastopol? fail' do
-    test = ::StTools::Fias.sevastopol?('6fdecb78-893a-4e3f-a5ba-aa062459463b')
+    test = ::StTools::Fias.sevastopol?('6fdecb78-893a-4e3f-ffff-aa062459463b')
     expect(test).to eq false
   end
 
   it 'baikonur? fail' do
-    test = ::StTools::Fias.baikonur?('c2deb16a-0330-4f05-821f-1d09c93331e6')
+    test = ::StTools::Fias.baikonur?('c2deb16a-0330-ffff-821f-1d09c93331e6')
     expect(test).to eq false
   end
 
@@ -107,6 +111,16 @@ describe 'Проверка методов StTool::Fias.*' do
 
   it 'federal? fail' do
     test = ::StTools::Fias.federal?('0c5b2444-70a0-4932-980c-b4dc053f02b5')
+    expect(test).to eq false
+  end
+
+  it 'other? success' do
+    test = ::StTools::Fias.other?('a074418e-41da-49dd-ad44-9f7909e91675')
+    expect(test).to eq true
+  end
+
+  it 'other? fail' do
+    test = ::StTools::Fias.other?('a074418e-41da-49dd-ffff-9f7909e91675')
     expect(test).to eq false
   end
 

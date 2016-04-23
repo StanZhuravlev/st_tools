@@ -83,6 +83,20 @@ module StTools
       return false
     end
 
+    # Метод проверяет, является ли aoguid неизвестным городом или страной
+    #
+    # @param [String] aoguid адресного объекта
+    # @return [Boolean] true, если объект - прочий адресный объект, вне ФИАС
+    def self.other?(aoguid)
+      self.other_aoguid == aoguid ? true : false
+    end
+
+    # Функция возвращает aoguid города населенного пункта вне системы ФИАС
+    #
+    # @return [String] aoguid неизвестного пункта
+    def self.other_aoguid
+      "a074418e-41da-49dd-ad44-9f7909e91675"
+    end
 
     # Метод проверяет, имеет ли переданная строка тип UUID
     #

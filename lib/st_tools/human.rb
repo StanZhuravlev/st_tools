@@ -136,7 +136,9 @@ module StTools
     # Метод оформляет число красивым способом, в виде "1 456 742,34".
     #
     # @param [Object] value исходное число в виде строки или числа, допустим nil
-    # @param [Sym] round число цифр после запятой (по умолчанию - 0)
+    # @param [Integer] round число цифр после запятой (по умолчанию - 0)
+    # @param [Boolean] nobr обрамить результат тегами nobr (по умолчанию - false)
+    # @param [Boolean] strong обрамить результат тегами strong (по умолчанию - false)
     # @return [String] строка с форматированным числом
     # @example Примеры использования
     #   StTools::Human.pretty_number(345)                       # => 345
@@ -144,7 +146,7 @@ module StTools
     #   StTools::Human.pretty_number(75345, round: 1)           # => 75 345,0
     #   StTools::Human.pretty_number(nil)                       # => 0
     #   StTools::Human.pretty_number('1675345.763', round: 1)   # => 1 675 345,7
-    def self.pretty_number(value, round: 0)
+    def self.pretty_number(value, round: 0, nobr: false, strong: false)
       out = StTools::String.to_float(value, round: round, stop: false).to_s
       arr = out.split(/[\,\.]/)
       tmp = arr.first.split(//).reverse.each_slice(3).to_a
@@ -156,6 +158,8 @@ module StTools
       if arr.count > 1
         out = [out, (arr.last + '000000000000000')[0,round]].join(',')
       end
+      out = "<nobr>#{out}</nobr>" if nobr
+      out = "<strong>#{out}</strong>" if strong
       out
     end
 
