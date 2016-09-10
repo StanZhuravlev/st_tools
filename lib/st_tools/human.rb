@@ -268,7 +268,7 @@ module StTools
 
     def self.format_time2_date(timestamp, format, god)
       res = I18n.l(timestamp, :format => "d#{format.to_s}".to_sym, locale: StTools.configuration.locale)
-      res += " г." if god && StTools.configuration.locale == :ru
+      res += I18n.t("st_tools.god_socr", locale: StTools.configuration.locale) if god && format.to_sym == :human
       res
     end
 
