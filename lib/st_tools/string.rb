@@ -16,8 +16,7 @@ module StTools
                                    'ъ' => '', 'ю' => 'ju', 'я' => 'ja',
                                    'Ж' => 'Zh', 'Ц' => 'Ts', 'Ч' => 'Ch', 'Ш' => 'Sh', 'Щ' => 'Sch',
                                    'Ъ' => '', 'Ю' => 'Ju', 'Я' => 'Ja')
-      translited.gsub!('\'', '')
-      return translited
+      translited.gsub('\'', '')
     end
 
     # Метод преобразует строку в нижний регистр с одновременной заменой буквы 'ё' на 'е'.
@@ -29,9 +28,12 @@ module StTools
     # @example Примеры использования
     #   StTools::String.downcase("Hello, Вася!")   #=> "hello, вася!"
     def self.downcase(text)
-      return nil if text.nil?
-      return text.tr('QWERTYUIOPASDFGHJKLZXCVBNMАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ',
-                     'qwertyuiopasdfghjklzxcvbnmабвгдеёжзийклмнопрстуфхцчшщъыьэюя').gsub('ё', 'е')
+      if text
+        text.tr('QWERTYUIOPASDFGHJKLZXCVBNMАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ',
+                'qwertyuiopasdfghjklzxcvbnmабвгдеежзийклмнопрстуфхцчшщъыьэюя')
+      else
+        ""
+      end
     end
 
     # Метод преобразует строку в верхний регистр с одновременной заменой буквы 'Ё' на 'Е'.
@@ -43,9 +45,12 @@ module StTools
     # @example Примеры использования
     #   StTools::String.upcase("Hello, Вася!")   #=> "HELLO, ВАСЯ!"
     def self.upcase(text)
-      return nil if text.nil?
+      if text
       return text.tr('qwertyuiopasdfghjklzxcvbnmабвгдеёжзийклмнопрстуфхцчшщъыьэюя',
-                     'QWERTYUIOPASDFGHJKLZXCVBNMАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ').gsub('Ё', 'Е')
+                     'QWERTYUIOPASDFGHJKLZXCVBNMАБВГДЕЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ')
+      else
+        ""
+      end
     end
 
     # Метод заменяет в исходной строке английские символы, похожие
@@ -95,7 +100,7 @@ module StTools
       len = text.length - 3
       0.upto((len/4).to_i) do
         pos = rand(len)
-        text[pos,1] = '*'
+        text[pos, 1] = '*'
       end
       return text
     end
@@ -222,7 +227,7 @@ module StTools
     #
     # @return [String] конвертированная строка
     # @example Примеры использования
-    #   StTools::Setup.setup(:ru)
+    #   StTools.configure { |config| config.locale = :ru }
     #   StTools::String.pretty_list([1,2])                      #=> "1 и 2"
     #   StTools::String.pretty_list([1,2,4])                    #=> "1, 2 и 4"
     #   StTools::String.pretty_list([1,2,3,4], union: :or)      #=> "1, 2, 3 или 4"
@@ -231,7 +236,7 @@ module StTools
       return "#{pretag}#{items.first}#{afttag}" if items.count == 1
       out = Array.new
       last = items.last
-      arr = items[0,items.count-1]
+      arr = items[0, items.count-1]
       arr.each do |one|
         out << "#{pretag}#{one}#{afttag}"
         out << separator + ' '
@@ -239,9 +244,9 @@ module StTools
       out.pop
       case union
         when :and
-          out << " #{I18n.t('string.pretty_list.and')} "
+          out << " #{I18n.t('st_tools.pretty_list.and', locale: StTools.configuration.locale)} "
         else
-          out << " #{I18n.t('string.pretty_list.or')} "
+          out << " #{I18n.t('st_tools.pretty_list.or', locale: StTools.configuration.locale)} "
       end
       out << "#{pretag}#{last}#{afttag}"
       out.join
@@ -265,7 +270,7 @@ module StTools
       return text if text.length <= length
       return text[0, length] if length <= endwith.length
 
-      out = text.strip[0,length - endwith.length]
+      out = text.strip[0, length - endwith.length]
       out.gsub!(/\s[^\s]+?\z/, '') if words
       out.strip + endwith
     end

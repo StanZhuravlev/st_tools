@@ -55,7 +55,10 @@ ru:
         two: секунды
         other: секунд
 
-  string:
+  st_tools:
+    bytes: "байт,кбайт,Мбайт,Гбайт,Тбайт,Пбайт"
+    numbers: ",тыс.,млн.,млрд.,трлн."
+    numbers_separator: " "
     pretty_list:
       and: и
       or: или

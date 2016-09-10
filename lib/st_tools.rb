@@ -32,6 +32,8 @@ module StTools
 
   class Configuration
     attr_reader :locale
+    attr_accessor :bytes_array
+    attr_accessor :numbers_array
 
     def initialize
       locale = :ru
@@ -46,7 +48,34 @@ module StTools
         else
           @locale = :ru
       end
+      rebuild_bytes_array
+      rebuild_numbers_array
     end
+
+    def rebuild_bytes_array
+      keys = I18n.t('st_tools.bytes', locale: @locale).split(",")
+      keys.map! { |x| x.strip }
+      raise "Must be 6 elements in array #{keys.inspect}" if keys.count != 6
+      @bytes_array = Hash.new
+      inc_value = 1024
+      keys.each do |key|
+        @bytes_array[key] = inc_value
+        inc_value *= 1024
+      end
+    end
+
+    def rebuild_numbers_array
+      keys = I18n.t('st_tools.numbers', locale: @locale).split(",")
+      keys.map! { |x| x.strip }
+      raise "Must be 5 elements in array #{keys.inspect}" if keys.count != 5
+      @numbers_array = Hash.new
+      inc_value = 1000
+      keys.each do |key|
+        @numbers_array[key] = inc_value
+        inc_value *= 1000
+      end
+    end
+
   end
 
   class Setup

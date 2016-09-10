@@ -122,7 +122,7 @@ describe 'Проверка методов StTools::String.*' do
   end
 
   it 'pretty_list - ru' do
-    ::StTools::Setup.setup(:ru)
+    StTools.configure { |config| config.locale = :ru }
     test = ::StTools::String.pretty_list(['Паша'])
     expect(test).to eq('Паша')
     test = ::StTools::String.pretty_list(['Паша', 'Маша'])
@@ -136,7 +136,7 @@ describe 'Проверка методов StTools::String.*' do
   end
 
   it 'pretty_list - en' do
-    ::StTools::Setup.setup(:en)
+    StTools.configure { |config| config.locale = :en }
     test = ::StTools::String.pretty_list(['Паша'])
     expect(test).to eq('Паша')
     test = ::StTools::String.pretty_list(['Паша', 'Маша'])

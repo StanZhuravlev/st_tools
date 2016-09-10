@@ -3,47 +3,42 @@ module StTools
 
 
     # Метод форматирует число, добавляя суффиксы 'тыс.', 'млн.' и пр.
+    # Предварительно необходимо вызвать StTools.configure { |config| config.locale = :ru }.
     #
     # @param [Integer] val исходное числовое значение
     # @return [String] строка вида "512,4 тыс."
     # @example Примеры использования
+    #   StTools.configure { |config| config.locale = :ru }
     #   StTools::Human.number(123)           #=> "123"
     #   StTools::Human.number(14563)         #=> "14 тыс."
     #   StTools::Human.number(763552638)     #=> "763.6 млн."
     def self.number(val)
-      # todo: локлаизовать через i18N
-      # noinspection RubyStringKeysInHashInspection
-      arr = {'' => 1000, 'тыс.' => 1000 * 1000, 'млн.' => 1000 * 1000 * 1000,
-             'млрд.' => 1000 * 1000 * 1000 * 1000, 'трлн.' => 1000 * 1000 * 1000 * 1000 * 1000}
-
-      arr.each_pair do |e, s|
+      StTools.configuration.numbers_array.each_pair do |e, s|
         if val < s
-          if ['', ' тыс.'].include?(e)
-            return "#{(val.to_f / (s / 1000)).round(0)} #{e}"
+          if s <= 1000*1000
+            return "#{(val.to_f / (s / 1000)).round(0)}#{I18n.t('st_tools.numbers_separator', locale: StTools.configuration.locale)}#{e}"
           else
-            return "#{(val.to_f / (s / 1000)).round(1)} #{e}"
+            return "#{(val.to_f / (s / 1000)).round(1)}#{I18n.t('st_tools.numbers_separator', locale: StTools.configuration.locale)}#{e}"
           end
         end
       end
     end
 
     # Метод форматирует число, добавляя суффиксы 'кбайт', 'Мбайт' и др.
+    # Предварительно необходимо вызвать StTools.configure { |config| config.locale = :ru }.
     #
     # @param [Integer] val исходное числовое значение в байтах
     # @return [String] строка вида "512,4 Мбайт"
     # @example Примеры использования
+    #   StTools.configure { |config| config.locale = :ru }
     #   StTools::Human.bytes(123)           #=> "123 байта"
     #   StTools::Human.bytes(14563)         #=> "14 кбайт"
     #   StTools::Human.bytes(763552638)     #=> "728.2 Мбайт"
     def self.bytes(val)
-      # todo: локализовать через i18N
       # noinspection RubyStringKeysInHashInspection
-      arr = {'байт' => 1024, 'кбайт' => 1024 * 1024, 'Мбайт' => 1024 * 1024 * 1024,
-             'Гбайт' => 1024 * 1024 * 1024 * 1024, 'Тбайт' => 1024 * 1024 * 1024 * 1024 * 1024}
-
-      arr.each_pair do |e, s|
+      StTools.configuration.bytes_array.each_pair do |e, s|
         if val < s
-          if %w(байт кбайт).include?(e)
+          if s <= 1024*1024
             return "#{(val.to_f / (s / 1024)).round(0)} #{e}"
           else
             return "#{(val.to_f / (s / 1024)).round(1)} #{e}"
@@ -61,7 +56,7 @@ module StTools
     end
 
     # Метод переводит DateTime в строку на русском или иных языках вида "4 дня 23 часа назад".
-    # Предварительно необходимо вызвать StTools.setup(:ru или :en).
+    # Предварительно необходимо вызвать StTools.configure { |config| config.locale = :ru }.
     #
     # @param [DateTime] time время и дата
     # @param [Boolean] ago true, если надо добавить слово "назад" в конец строки

@@ -3,6 +3,7 @@
 * В метод `StTools::String.normalize` добавлен параметр `delat`. Изменение потребовалось после того, как при использовании функции normalize для генерации `slug` имен в одном из проектов выяснилось, что в URL часть английских букв заменены на русские.
 * Вместо метода  `StTools::Setup.setup` применен `StTools.configure { |config| config.locale = :ru }`. Подробнее - см. README.md
 * Написана функция `StTools::Human.format_time2` с более простыми и понятными ключами запуска
+* Методы `StTools::Human.bytes` и `StTools::Human.numbers` локализованы через I18n
 
 ## 0.3.18 (2016-05-12)
 

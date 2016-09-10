@@ -78,7 +78,11 @@ en:
         two: seconds
         other: seconds
 
-  string:
+  st_tools:
+    bytes: "b,kb,Mb,Gb,Tb,Pb"
+    numbers: ",k,m,b,t"
+    numbers_separator: ""
     pretty_list:
       and: and
       or: or
+

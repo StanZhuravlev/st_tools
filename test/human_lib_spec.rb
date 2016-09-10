@@ -4,29 +4,60 @@ require 'st_tools'
 
 describe 'Проверка методов StTools::Human.*' do
   it '.bytes(234)' do
+    StTools.configure { |config| config.locale = :ru }
     test = ::StTools::Human.bytes(234)
     expect(test).to include('234')
     expect(test).to include('байт')
   end
 
   it '.bytes(14234)' do
+    StTools.configure { |config| config.locale = :ru }
     test = ::StTools::Human.bytes(14234)
     expect(test).to include('14')
     expect(test).to include('кбайт')
   end
 
+  it '.bytes(:en, 234)' do
+    StTools.configure { |config| config.locale = :en }
+    test = ::StTools::Human.bytes(234)
+    expect(test).to include('234')
+    expect(test).to include('b')
+  end
+
+  it '.bytes(:en, 14234)' do
+    StTools.configure { |config| config.locale = :en }
+    test = ::StTools::Human.bytes(14234)
+    expect(test).to include('14')
+    expect(test).to include('kb')
+  end
+
   it '.number(234)' do
+    StTools.configure { |config| config.locale = :ru }
     test = ::StTools::Human.number(234)
     expect(test).to include('234')
   end
 
   it '.number(14234)' do
+    StTools.configure { |config| config.locale = :ru }
     test = ::StTools::Human.number(14234)
     expect(test).to include('14')
-    expect(test).to include('тыс.')
+    expect(test).to include(' тыс.')
+  end
+
+  it '.number(:en, 234)' do
+    StTools.configure { |config| config.locale = :en }
+    test = ::StTools::Human.number(234)
+    expect(test).to include('234')
+  end
+
+  it '.number(:en, 14234)' do
+    StTools.configure { |config| config.locale = :en }
+    test = ::StTools::Human.number(14234)
+    expect(test).to include('14k')
   end
 
   it '.memory' do
+    StTools.configure { |config| config.locale = :ru }
     test = ::StTools::Human.memory
     expect(test).to include('байт')
   end
