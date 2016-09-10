@@ -57,7 +57,7 @@ module StTools
     # @return [String] текст только с русскими буквами
     def self.delat(text)
       return nil if text.nil?
-      return text.tr('ёЁEeHCcTOoPpAHKXxBM', 'еЕЕеНСсТОоРрАНКХхВМ')
+      text.tr('ёЁEeHCcTOoPpAHKXxBM', 'еЕЕеНСсТОоРрАНКХхВМ')
     end
 
     # Метод проводит нормализацию строки для последующей машиной обработки. При этом осуществляется:
@@ -68,12 +68,16 @@ module StTools
     # - в строке удаляются повторные пробелы между словами
     #
     # @param [String] text строка, введенная пользователям
+    # @param [Boolean] delat флаг необходимости проводить де-латинизацию. По умолчанию - false
     # @return [String] строка без 'ё', в нижнем регистре, без английских букв
     # @example Примеры использования
     #   StTools::String.normalize("  Ёлки-     ПАЛКИ")   #=> "елки- палки"
-    def self.normalize(text)
-      return nil if text.nil?
-      return self.downcase(self.delat(text)).strip.gsub(/[\s\t\u00A0]{1,100}/, ' ')
+    #   StTools::String.normalize("Ee", delat: true)     #=> "ее" (русские буквы)
+    #   StTools::String.normalize("Ee")                  #=> "ee" (латинские буквы)
+    def self.normalize(text, delat: false)
+      return nil if text.nil? || text.empty?
+      out = delat ? self.delat(text) : text.gsub('ё', 'е').gsub('Ё', 'Е')
+      self.downcase(out).strip.gsub(/[\s\t\u00A0]{1,100}/, ' ')
     end
 
     # Метод позволяет показывать клиенту строку в неполном объеме, с закрытием части символов в строке звездочкой.

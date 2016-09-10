@@ -12,6 +12,13 @@ ru:
        date_short: "%d/%m/%Y"
        full_short: "%d/%m/%Y %H:%M"
        time_short: "%H:%M"
+
+       # Значения для format_time2
+       tfull: "%H:%M:%S"
+       tshort: "%H:%M"
+       dhuman: "%-d %B %Y"
+       dfull: "%d/%m/%Y"
+       dshort: "%-d/%-m/%Y"
   date:
     <<: *defaults
   time:

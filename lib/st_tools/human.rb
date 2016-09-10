@@ -36,7 +36,7 @@ module StTools
     #   StTools::Human.bytes(14563)         #=> "14 кбайт"
     #   StTools::Human.bytes(763552638)     #=> "728.2 Мбайт"
     def self.bytes(val)
-      # todo: локлаизовать через i18N
+      # todo: локализовать через i18N
       # noinspection RubyStringKeysInHashInspection
       arr = {'байт' => 1024, 'кбайт' => 1024 * 1024, 'Мбайт' => 1024 * 1024 * 1024,
              'Гбайт' => 1024 * 1024 * 1024 * 1024, 'Тбайт' => 1024 * 1024 * 1024 * 1024 * 1024}
@@ -67,7 +67,7 @@ module StTools
     # @param [Boolean] ago true, если надо добавить слово "назад" в конец строки
     # @return [String] строка вида "3 дня 12 часов" или "3 дня 12 часов назад"
     # @example Примеры использования
-    #   StTools::Setup.setup(:ru)
+    #   StTools.configure { |config| config.locale = :ru }
     #   StTools::Human.human_ago(Time.now - 23, true)       #=> "23 секунды назад"
     #   StTools::Human.human_ago(Time.now - 24553, false)   #=> 6 часов 49 минут"
     #   StTools::Human.human_ago(Time.now)                  #=> "сейчас"
@@ -75,37 +75,39 @@ module StTools
       now = self.to_time(Time.now.strftime('%Y-%m-%d %H:%M:%S UTC'))
       slf = self.to_time(time.strftime('%Y-%m-%d %H:%M:%S UTC'))
       secs = (now - slf).to_i
-      return I18n.t('common.ago.very_long') if time.year < 1800
-      return I18n.t('common.ago.just_now') if secs > -1 && secs < 1
+      return I18n.t('common.ago.very_long', locale: StTools.configuration.locale) if time.year < 1800
+      return I18n.t('common.ago.just_now', locale: StTools.configuration.locale) if secs > -1 && secs < 1
       return '' if secs <= -1
       pair = self.ago_in_words_pair(secs)
-      pair << I18n.t("common.ago.ago_word") if ago == true
+      pair << I18n.t("common.ago.ago_word", locale: StTools.configuration.locale) if ago == true
       pair.join(' ')
     end
 
     # Метод принимает параметр - количество секунд между двумя любыми событиями в секундах,
     # и переводит их в строку на русском или иных языках вида "4 дня 23 часа назад".
-    # Предварительно необходимо вызвать StTools.setup(:ru или :en).
+    # Предварительно необходимо вызвать StTools.configure { |config| config.locale = :ru (или :en) }.
     #
     # @param [DateTime] sesc количество секунд
     # @param [Boolean] ago true, если надо добавить слово "назад" в конец строки
     # @return [String] строка вида "3 дня 12 часов" или "3 дня 12 часов назад"
     # @example Примеры использования
-    #   StTools::Setup.setup(:ru)
+    #   StTools.configure { |config| config.locale = :ru }
     #   StTools::Human.seconds_ago(23, true)       #=> "23 секунды назад"
     #   StTools::Human.seconds_ago(24553, false)   #=> 6 часов 49 минут"
     #   StTools::Human.seconds_ago(0)              #=> "сейчас"
     def self.seconds_ago(secs, ago = true)
       secs_i = secs.to_i
-      return I18n.t('common.ago.just_now') if secs_i > -1 && secs_i < 1
+      return I18n.t('common.ago.just_now', locale: StTools.configuration.locale) if secs_i > -1 && secs_i < 1
       return '' if secs_i <= -1
       pair = self.ago_in_words_pair(secs_i)
-      pair << I18n.t("common.ago.ago_word") if ago == true
+      pair << I18n.t("common.ago.ago_word", locale: StTools.configuration.locale) if ago == true
       pair.join(' ')
     end
 
     # Метод переводит DateTime в строку на русском или иных языках. Предварительно необходимо вызвать
-    # StTools.setup(:ru или :en).
+    # StTools.configure { |config| config.locale = :ru (или :en) }.
+    #
+    # DEPRECATED
     #
     # @param [DateTime] time исходные время и дата
     # @param [Sym] what формат возвращаемого результата, принимает одно из следующих значений
@@ -117,7 +119,7 @@ module StTools
     # @option :short короткая форма
     # @return [String] строка с форматированными датой и временем
     # @example Примеры использования
-    #   StTools::Setup.setup(:ru)
+    #   StTools.configure { |config| config.locale = :ru }
     #   StTools::Human.format_time(Time.now, :full, :full)       #=> "30 апреля 2015 г. 08:54:34"
     #   StTools::Human.format_time(Time.now, :date, :full)       #=> "30 апреля 2015 г."
     #   StTools::Human.format_time(Time.now, :time, :full)       #=> "08:54:34"
@@ -129,9 +131,57 @@ module StTools
         warn "WARNING: what ':#{what.to_s}' must be in [:full, :date, :time]. Use ':full' now (at line #{__LINE__} of StTools::#{File.basename(__FILE__)})"
         what = :full
       end
-      return I18n.l(time, :format => "#{what.to_s}_#{type.to_s}".to_sym)
+      return I18n.l(time, :format => "#{what.to_s}_#{type.to_s}".to_sym, locale: StTools.configuration.locale)
     end
 
+    # Метод переводит DateTime в строку на русском или иных языках. Предварительно необходимо вызвать
+    # StTools.configure { |config| config.locale = :ru (или :en) }.
+    #
+    # @param [DateTime] timestamp исходные время и дата
+    # @param [Sym] date формат возвращаемого результата, принимает одно из следующих значений
+    # @option :human форматирует дату и время в формате "21 марта 2011"
+    # @option :full форматирует дату и время в формате "21.03.2016"
+    # @option :short форматирует только дату в формате "21.3.16"
+    # @option :none игнорирует значение даты
+    # @param [Sym] time форма в которой возращать результат
+    # @option :full длинна форма в формате "08:23:03"
+    # @option :short короткая форма в формате "8:23", "22:34", "8:23 am"
+    # @option :none игнорирует значение времени
+    # @param [Sym] god при русской локализации и методе :human добавляет "г." после даты
+    # @return [String] строка с форматированными датой и временем
+    # @example Примеры использования
+    #   StTools.configure { |config| config.locale = :ru }
+    #   StTools::Human.format_time2(Time.now, :human, :full)               #=> "30 апреля 2015 г. 08:54:34"
+    #   StTools::Human.format_time2(Time.now, :human, :full, god: false)   #=> "30 апреля 2015 08:54:34"
+    #   StTools::Human.format_time2(Time.now, :human, :short)              #=> "30 апреля 2015 г. 8:54"
+    #   StTools::Human.format_time2(Time.now, :human, :none)               #=> "30 апреля 2015 г."
+    #   StTools::Human.format_time2(Time.now, :full, :full)                #=> "30/04/2015 08:54:34"
+    #   StTools::Human.format_time2(Time.now, :short, :short)              #=> "30/04/15 8:54"
+    #   StTools::Human.format_time2(Time.now, :none, :full)                #=> "08:54:34"
+    #   StTools::Human.format_time2(Time.now, :none, :short)               #=> "8:54"
+    def self.format_time2(timestamp, date, time, god: true)
+      unless [:human, :full, :short, :none].include?(date)
+        warn "WARNING: date ':#{date.to_s}' must be in [:human, :full, :short, :none]. Use ':human' now (at line #{__LINE__} of StTools::#{File.basename(__FILE__)})"
+        date = :human
+      end
+      unless [:full, :short, :none].include?(time)
+        warn "WARNING: time ':#{time.to_s}' must be in [:full, :short, :none]. Use ':full' now (at line #{__LINE__} of StTools::#{File.basename(__FILE__)})"
+        time = :full
+      end
+
+      case
+        when date == :none && time == :none
+          ""
+        when date != :none && time == :none
+          StTools::Human.format_time2_date(timestamp, date, god)
+        when date != :none && time != :none
+          "#{StTools::Human.format_time2_date(timestamp, date, god)} #{StTools::Human.format_time2_time(timestamp, time)}"
+        when date == :none && time != :none
+          StTools::Human.format_time2_time(timestamp, time)
+        else
+          ""
+      end
+    end
 
     # Метод оформляет число красивым способом, в виде "1 456 742,34".
     #
@@ -193,10 +243,10 @@ module StTools
     def self.ago_in_words_one_value(val, tag)
       num100 = val % 100
       num10 = val % 10
-      return val.to_s + " " + I18n.t("common.ago.#{tag}.other") if (num100 >=5 && num100 <= 20)
-      return val.to_s + " " + I18n.t("common.ago.#{tag}.one") if (num10 == 1)
-      return val.to_s + " " + I18n.t("common.ago.#{tag}.two") if ([2, 3, 4].include?(num10))
-      return val.to_s + " " + I18n.t("common.ago.#{tag}.other")
+      return val.to_s + " " + I18n.t("common.ago.#{tag}.other", locale: StTools.configuration.locale) if (num100 >=5 && num100 <= 20)
+      return val.to_s + " " + I18n.t("common.ago.#{tag}.one", locale: StTools.configuration.locale) if (num10 == 1)
+      return val.to_s + " " + I18n.t("common.ago.#{tag}.two", locale: StTools.configuration.locale) if ([2, 3, 4].include?(num10))
+      return val.to_s + " " + I18n.t("common.ago.#{tag}.other", locale: StTools.configuration.locale)
     end
 
     def self.to_time(time, form = :local)
@@ -215,6 +265,16 @@ module StTools
       )
 
       form == :utc ? time.utc : time.getlocal
+    end
+
+    def self.format_time2_time(timestamp, format)
+      I18n.l(timestamp, :format => "t#{format.to_s}".to_sym, locale: StTools.configuration.locale)
+    end
+
+    def self.format_time2_date(timestamp, format, god)
+      res = I18n.l(timestamp, :format => "d#{format.to_s}".to_sym, locale: StTools.configuration.locale)
+      res += " г." if god && StTools.configuration.locale == :ru
+      res
     end
 
   end

@@ -4,6 +4,7 @@ require "st_tools/version"
 
 require 'ruby-progressbar'
 require 'yaml'
+require 'i18n'
 
 module StTools
   require "st_tools/common"
@@ -19,8 +20,36 @@ module StTools
   require 'modules/time'
   require 'modules/fias'
 
-  class Setup
+  # Use tutorial https://robots.thoughtbot.com/mygem-configure-block
+  class << self
+    attr_accessor :configuration
+  end
 
+  def self.configure
+    self.configuration ||= Configuration.new
+    yield(configuration)
+  end
+
+  class Configuration
+    attr_reader :locale
+
+    def initialize
+      locale = :ru
+    end
+
+    def locale=(val)
+      ::I18n.load_path += Dir[File.join(File.dirname(__dir__), '/lib/i18n/*.yml')]
+      ::I18n.backend.load_translations
+      case val.to_sym
+        when :ru, :en
+          @locale = val.to_sym
+        else
+          @locale = :ru
+      end
+    end
+  end
+
+  class Setup
     # Метод загрузки файлов локализации для методов форматирования времени. Принимает значения [:en, :ru]
     #
     # @param [Object] locale - язык локализации, поддерживается :ru, :en. Если передена неизвестная локализация
@@ -29,6 +58,7 @@ module StTools
     def self.setup(locale)
       locale = :ru unless [:ru, :en].include?(locale)
       self.setup_locale(locale)
+      warn "[DEPRECATION] setup is will deprecated."
     end
 
     private

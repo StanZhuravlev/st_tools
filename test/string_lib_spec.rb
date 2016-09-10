@@ -14,8 +14,18 @@ describe 'Проверка методов StTools::String.*' do
   end
 
   it '.normalize' do
-    test = ::StTools::String.normalize('Ярослав    Му(y)дрёный')
+    test = ::StTools::String.normalize('Ярослав    Му(y)дрёный', delat: true)
     expect(test).to include('ярослав му(y)дреный')
+  end
+
+  it '.normalize без delat' do
+    test = ::StTools::String.normalize('Ee') # Английские буквы
+    expect(test).to include('ee') # Английские буквы
+  end
+
+  it '.normalize с delat' do
+    test = ::StTools::String.normalize('Ee', delat: true) # Английкие буквы
+    expect(test).to include('ее') # Русские буквы
   end
 
   it '.downcase("EngLish")' do

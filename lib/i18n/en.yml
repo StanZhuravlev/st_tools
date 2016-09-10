@@ -33,6 +33,13 @@ en:
       date_short: "%m/%d/%Y"
       full_short: "%m/%d/%Y %I:%M:%S %P"
       time_short: "%I:%M %P"
+
+      # Values for format_time2
+      tfull: "%I:%M:%S %P"
+      tshort: "%I:%M %P"
+      dhuman: "%B %-d, %Y"
+      dfull: "%m/%d/%Y"
+      dshort: "%-m/%-d/%Y"
   date:
     <<: *defaults
   time:

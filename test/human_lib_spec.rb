@@ -32,35 +32,35 @@ describe 'Проверка методов StTools::Human.*' do
   end
 
   it '.human_ago (:ru)' do
-    ::StTools::Setup.setup(:ru)
+    StTools.configure { |config| config.locale = :ru }
     test = ::StTools::Human.human_ago(DateTime.new(2001,2,3,4,5,6,'+7'), true)
     expect(test).to include('назад')
     expect(test).to include('лет')
   end
 
   it '.human_ago (:en)' do
-    ::StTools::Setup.setup(:en)
+    StTools.configure { |config| config.locale = :en }
     test = ::StTools::Human.human_ago(DateTime.new(2001,2,3,4,5,6,'+7'), true)
     expect(test).to include('ago')
     expect(test).to include('years')
   end
 
   it '.seconds_ago (:ru)' do
-    ::StTools::Setup.setup(:ru)
+    StTools.configure { |config| config.locale = :ru }
     test = ::StTools::Human.seconds_ago(67, true)
     expect(test).to include('назад')
     expect(test).to include('1 минута')
   end
 
   it '.seconds_ago (:en)' do
-    ::StTools::Setup.setup(:en)
+    StTools.configure { |config| config.locale = :en }
     test = ::StTools::Human.seconds_ago(67, true)
     expect(test).to include('ago')
     expect(test).to include('1 minute')
   end
 
   it '.format_time (:ru)' do
-    ::StTools::Setup.setup(:ru)
+    StTools.configure { |config| config.locale = :ru }
     test = ::StTools::Human.format_time(Time.now, :full, :full)
     expect(test).to match(/[а-я]{1,3}/)
     test = ::StTools::Human.format_time(Time.now, :full, :short)
@@ -68,7 +68,7 @@ describe 'Проверка методов StTools::Human.*' do
   end
 
   it '.format_time (:en)' do
-    ::StTools::Setup.setup(:en)
+    StTools.configure { |config| config.locale = :en }
     test = ::StTools::Human.format_time(Time.now, :full, :full)
     expect(test).to match(/[a-z]{1,3}/i)
     test = ::StTools::Human.format_time(Time.now, :full, :short)
@@ -95,5 +95,5 @@ describe 'Проверка методов StTools::Human.*' do
     expect(test).to match('0')
   end
 
-
 end
+
