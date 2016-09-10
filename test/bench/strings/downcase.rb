@@ -15,6 +15,7 @@ def test_st_tools(str, count)
   speed
 end
 
+puts "RUBY_VERSION: #{RUBY_VERSION}"
 
 avg = 0
 puts "StTools::Strings.downcase"

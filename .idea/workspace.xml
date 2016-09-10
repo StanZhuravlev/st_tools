@@ -2,19 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b078ee99-6eb5-4c77-9c3c-8c2c5500046c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/bench/strings/downcase.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/st_tools.iml" afterPath="$PROJECT_DIR$/.idea/st_tools.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CHANGELOG.md" afterPath="$PROJECT_DIR$/CHANGELOG.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TODO.md" afterPath="$PROJECT_DIR$/TODO.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/i18n/en.yml" afterPath="$PROJECT_DIR$/lib/i18n/en.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/i18n/ru.yml" afterPath="$PROJECT_DIR$/lib/i18n/ru.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/st_tools.rb" afterPath="$PROJECT_DIR$/lib/st_tools.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/st_tools/human.rb" afterPath="$PROJECT_DIR$/lib/st_tools/human.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/st_tools/string.rb" afterPath="$PROJECT_DIR$/lib/st_tools/string.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/human_lib_format_time2_spec.rb" afterPath="$PROJECT_DIR$/test/human_lib_format_time2_spec.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/human_lib_spec.rb" afterPath="$PROJECT_DIR$/test/human_lib_spec.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/string_lib_spec.rb" afterPath="$PROJECT_DIR$/test/string_lib_spec.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/bench/strings/downcase.rb" afterPath="$PROJECT_DIR$/test/bench/strings/downcase.rb" />
     </list>
     <ignored path="st_tools.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -49,7 +39,7 @@
     <SUITE FILE_PATH="coverage/st_tools@__StTools__System____st_tools.coverage" NAME="Проверка методов StTools::System.*: st_tools Coverage Results" MODIFIED="1430245773639" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="st_tools" />
     <SUITE FILE_PATH="coverage/st_tools@__StTools__String____downcase______st_tools.coverage" NAME="Проверка методов StTools::String.* .downcase(&quot;РуссКИЙ&quot;): st_tools Coverage Results" MODIFIED="1430379079657" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="st_tools" />
     <SUITE FILE_PATH="coverage/st_tools@Run_spec__human_lib_spec___st_tools.coverage" NAME="Run spec 'human_lib_spec': st_tools Coverage Results" MODIFIED="1473505416310" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="st_tools" />
-    <SUITE FILE_PATH="coverage/st_tools@downcase.coverage" NAME="downcase Coverage Results" MODIFIED="1473514481674" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test/bench/strings" MODULE_NAME="st_tools" />
+    <SUITE FILE_PATH="coverage/st_tools@downcase.coverage" NAME="downcase Coverage Results" MODIFIED="1473515914175" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test/bench/strings" MODULE_NAME="st_tools" />
     <SUITE FILE_PATH="coverage/st_tools@__StTool__Fias____uuid___st_tools.coverage" NAME="Проверка методов StTool::Fias.* .uuid?: st_tools Coverage Results" MODIFIED="1430081814452" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="st_tools" />
     <SUITE FILE_PATH="coverage/st_tools@__StTools__Usage____screen__width___st_tools.coverage" NAME="Проверка методов StTools::Usage.* .screen(:width): st_tools Coverage Results" MODIFIED="1430219445996" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="st_tools" />
     <SUITE FILE_PATH="coverage/st_tools@IRB_console__st_tools.coverage" NAME="IRB console: st_tools Coverage Results" MODIFIED="1436389538509" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="st_tools" />
@@ -71,8 +61,8 @@
       <file leaf-file-name="string.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/st_tools/string.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="239">
-              <caret line="52" column="9" selection-start-line="52" selection-start-column="9" selection-end-line="52" selection-end-column="9" />
+            <state relative-caret-position="179">
+              <caret line="59" column="0" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -81,8 +71,8 @@
       <file leaf-file-name="downcase.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/bench/strings/downcase.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="296">
-              <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+            <state relative-caret-position="176">
+              <caret line="17" column="34" selection-start-line="17" selection-start-column="34" selection-end-line="17" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -819,7 +809,7 @@
       <workItem from="1470374691880" duration="592000" />
       <workItem from="1470420338833" duration="594000" />
       <workItem from="1472840722096" duration="603000" />
-      <workItem from="1473450835688" duration="12532000" />
+      <workItem from="1473450835688" duration="12939000" />
     </task>
     <task id="LOCAL-00001" summary="Add base class with including libs files">
       <created>1430286560877</created>
@@ -1073,7 +1063,14 @@
       <option name="project" value="LOCAL" />
       <updated>1473499511039</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="Переработана конфигурация гема, добавлена функция format_time2">
+      <created>1473515540472</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1473515540473</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1109,7 +1106,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="46402000" />
+    <option name="totallyTimeSpent" value="46809000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1125,12 +1122,12 @@
     <editor active="false" />
     <layout>
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34236452" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34236452" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3286385" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3286385" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32792208" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32792208" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3286385" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -1624,16 +1621,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/test/bench/strings/downcase.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="296">
-          <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+        <state relative-caret-position="176">
+          <caret line="17" column="34" selection-start-line="17" selection-start-column="34" selection-end-line="17" selection-end-column="34" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/st_tools/string.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="239">
-          <caret line="52" column="9" selection-start-line="52" selection-start-column="9" selection-end-line="52" selection-end-column="9" />
+        <state relative-caret-position="179">
+          <caret line="59" column="0" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
           <folding />
         </state>
       </provider>

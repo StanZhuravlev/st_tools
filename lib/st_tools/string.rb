@@ -29,11 +29,14 @@ module StTools
     #   StTools::String.downcase("Hello, Вася!")   #=> "hello, вася!"
     def self.downcase(text)
       if text
-        text.tr('QWERTYUIOPASDFGHJKLZXCVBNMАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ',
-                'qwertyuiopasdfghjklzxcvbnmабвгдеежзийклмнопрстуфхцчшщъыьэюя')
-      else
-        ""
+        if RUBY_VERSION < "2.4"
+          return text.tr('QWERTYUIOPASDFGHJKLZXCVBNMАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ',
+                         'qwertyuiopasdfghjklzxcvbnmабвгдеежзийклмнопрстуфхцчшщъыьэюя')
+        else
+          return text.downcase
+        end
       end
+      ""
     end
 
     # Метод преобразует строку в верхний регистр с одновременной заменой буквы 'Ё' на 'Е'.
@@ -46,11 +49,14 @@ module StTools
     #   StTools::String.upcase("Hello, Вася!")   #=> "HELLO, ВАСЯ!"
     def self.upcase(text)
       if text
-      return text.tr('qwertyuiopasdfghjklzxcvbnmабвгдеёжзийклмнопрстуфхцчшщъыьэюя',
-                     'QWERTYUIOPASDFGHJKLZXCVBNMАБВГДЕЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ')
-      else
-        ""
+        if RUBY_VERSION < "2.4"
+          return text.tr('qwertyuiopasdfghjklzxcvbnmабвгдеёжзийклмнопрстуфхцчшщъыьэюя',
+                         'QWERTYUIOPASDFGHJKLZXCVBNMАБВГДЕЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ')
+        else
+          return text.upcase
+        end
       end
+      ""
     end
 
     # Метод заменяет в исходной строке английские символы, похожие
