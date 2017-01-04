@@ -87,7 +87,7 @@ module StTools
     def self.setup(locale)
       locale = :ru unless [:ru, :en].include?(locale)
       self.setup_locale(locale)
-      warn "[DEPRECATION] setup is will deprecated."
+      warn "[DEPRECATION] StTools.setup is will deprecated."
     end
 
     private
