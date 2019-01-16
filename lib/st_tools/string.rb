@@ -13,11 +13,12 @@ module StTools
       translited = translited.tr('АБВГДЕЁЗИЙКЛМНОПРСТУФХЭЫЬ', 'ABVGDEEZIJKLMNOPRSTUFHEY\'\'')
 
       translited = translited.gsub(/[жцчшщъюяЖЦЧШЩЪЮЯ]/, 'ж' => 'zh', 'ц' => 'ts', 'ч' => 'ch', 'ш' => 'sh', 'щ' => 'sch',
-                                   'ъ' => '', 'ю' => 'ju', 'я' => 'ja',
-                                   'Ж' => 'Zh', 'Ц' => 'Ts', 'Ч' => 'Ch', 'Ш' => 'Sh', 'Щ' => 'Sch',
-                                   'Ъ' => '', 'Ю' => 'Ju', 'Я' => 'Ja')
+                                   'ъ'                       => '', 'ю' => 'ju', 'я' => 'ja',
+                                   'Ж'                       => 'Zh', 'Ц' => 'Ts', 'Ч' => 'Ch', 'Ш' => 'Sh', 'Щ' => 'Sch',
+                                   'Ъ'                       => '', 'Ю' => 'Ju', 'Я' => 'Ja')
       translited.gsub('\'', '')
     end
+
 
     # Метод преобразует строку в нижний регистр с одновременной заменой буквы 'ё' на 'е'.
     # Метод имеет примерно в два раза более высокую производительности по сравнению с традиционным .mb_chars.downcase.to_s,
@@ -29,15 +30,12 @@ module StTools
     #   StTools::String.downcase("Hello, Вася!")   #=> "hello, вася!"
     def self.downcase(text)
       if text
-        if RUBY_VERSION < "2.4"
-          return text.tr('QWERTYUIOPASDFGHJKLZXCVBNMАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ',
-                         'qwertyuiopasdfghjklzxcvbnmабвгдеежзийклмнопрстуфхцчшщъыьэюя')
-        else
-          return text.downcase
-        end
+        return text.tr('QWERTYUIOPASDFGHJKLZXCVBNMАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ',
+                       'qwertyuiopasdfghjklzxcvbnmабвгдеежзийклмнопрстуфхцчшщъыьэюя')
       end
       ""
     end
+
 
     # Метод преобразует строку в верхний регистр с одновременной заменой буквы 'Ё' на 'Е'.
     # Метод имеет примерно в два раза более высокую производительности по сравнению с традиционным .mb_chars.downcase.to_s,
@@ -49,15 +47,12 @@ module StTools
     #   StTools::String.upcase("Hello, Вася!")   #=> "HELLO, ВАСЯ!"
     def self.upcase(text)
       if text
-        if RUBY_VERSION < "2.4"
-          return text.tr('qwertyuiopasdfghjklzxcvbnmабвгдеёжзийклмнопрстуфхцчшщъыьэюя',
-                         'QWERTYUIOPASDFGHJKLZXCVBNMАБВГДЕЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ')
-        else
-          return text.upcase
-        end
+        return text.tr('qwertyuiopasdfghjklzxcvbnmабвгдеёжзийклмнопрстуфхцчшщъыьэюя',
+                       'QWERTYUIOPASDFGHJKLZXCVBNMАБВГДЕЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ')
       end
       ""
     end
+
 
     # Метод заменяет в исходной строке английские символы, похожие
     # на русские - на соответстующие русские символы. То есть это похоже на ситуацию,
@@ -70,6 +65,7 @@ module StTools
       return nil if text.nil?
       text.tr('ёЁEeHCcTOoPpAHKXxBM', 'еЕЕеНСсТОоРрАНКХхВМ')
     end
+
 
     # Метод проводит нормализацию строки для последующей машиной обработки. При этом осуществляется:
     # - убирается букву 'ё'
@@ -91,6 +87,7 @@ module StTools
       self.downcase(out).strip.gsub(/[\s\t\u00A0]{1,100}/, ' ')
     end
 
+
     # Метод позволяет показывать клиенту строку в неполном объеме, с закрытием части символов в строке звездочкой.
     # При этом число звездочек в строке определеяется ее длиной. Чем строка дилинее - тем больше в ней звездочек.
     #
@@ -104,12 +101,13 @@ module StTools
     def self.hide(text)
       return nil if text.nil?
       len = text.length - 3
-      0.upto((len/4).to_i) do
-        pos = rand(len)
+      0.upto((len / 4).to_i) do
+        pos          = rand(len)
         text[pos, 1] = '*'
       end
       return text
     end
+
 
     # Метод аналогичен обычной функции split, однако дополнительно может выполнять следующие действия:
     # - strip каждого элемента
@@ -142,6 +140,7 @@ module StTools
       return []
     end
 
+
     # Метод возвращает полный массив Array [1, 4, 5, 6, 7, 456] для строк вида '1, 4, 5-7, 456'.
     # Дополнительно осуществляется:
     # - сортировка в прямом порядке
@@ -163,7 +162,7 @@ module StTools
       tmp = self.split(text, ',')
       tmp.each do |one|
         if one.match(/\-/)
-          d = one.split(/\-/)
+          d   = one.split(/\-/)
           out += Range.new(d.first.to_i, d.last.to_i).to_a
         else
           out << one.to_i
@@ -175,6 +174,7 @@ module StTools
 
       return out
     end
+
 
     # Метод делает заглавной первую букву в словах, разделенных пробелами или дефисом.
     #
@@ -192,6 +192,7 @@ module StTools
     rescue
       return text
     end
+
 
     # Метод конвертирует строку в тип boolean
     #
@@ -221,6 +222,7 @@ module StTools
       false
     end
 
+
     # Метод преобразует список Array в строку перечисление вида "это, это и это". Метод позволяет
     # делать перечсиелние на разных языках, использовать частицы 'и' и 'или', а также оформлять
     # список тегами HTML.
@@ -240,9 +242,9 @@ module StTools
     def self.pretty_list(items, separator: ',', union: :and, pretag: '', afttag: '')
       return '' if items.nil? || items.empty?
       return "#{pretag}#{items.first}#{afttag}" if items.count == 1
-      out = Array.new
+      out  = Array.new
       last = items.last
-      arr = items[0, items.count-1]
+      arr  = items[0, items.count - 1]
       arr.each do |one|
         out << "#{pretag}#{one}#{afttag}"
         out << separator + ' '
@@ -257,6 +259,7 @@ module StTools
       out << "#{pretag}#{last}#{afttag}"
       out.join
     end
+
 
     # Метод обрезает строку и добавляет в случае обрезания строки многоточие
     #
@@ -280,6 +283,7 @@ module StTools
       out.gsub!(/\s[^\s]+?\z/, '') if words
       out.strip + endwith
     end
+
 
     # Метод преобразует строковое выражение в число с плавающей запятой. При этом метод корректно преобразует
     # числа вида "12.34" и "12,34", то есть с точкой и запятой (но будет некорректный результат в случае
